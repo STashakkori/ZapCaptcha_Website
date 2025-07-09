@@ -3,16 +3,16 @@
 
   Designed and developed by QVLx Labs.
   https://www.qvlx.com
-
+ 
   © 2024–2025 QVLx Labs. All rights reserved.
   ZapCaptcha is a proprietary CAPTCHA system for front-end validation without backend server reliance.
-
+ 
   This software is licensed for non-commercial use and authorized commercial use only.
   Unauthorized reproduction, redistribution, or tampering is strictly prohibited.
-
+ 
   ZapCaptcha includes anti-bot measures, DOM mutation traps, and telemetry hooks.
   Attempted bypass, obfuscation, or automation is a violation of applicable laws and terms of use.
-
+ 
   To license ZapCaptcha for enterprise/commercial use, contact:
   security@qvlx.com
 -->
@@ -21,50 +21,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Contributing – ZapCaptcha</title>
+  <title>ZapCaptcha Compliance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="../style.css" />
   <link rel="preload" href="https://zapcaptcha.com/zapcaptcha.css" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://zapcaptcha.com/zapcaptcha.css"></noscript>
   <style>
-    .content-block {
-      max-width: 900px;
+    .subhead {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+    .compliance-section {
+      max-width: 800px;
       margin: 0 auto;
-      padding: 40px 20px;
-      text-align: left;
+      padding: 20px;
     }
-
-    .content-block h2 {
-      color: #222;
-      font-size: 1.8em;
-      margin-bottom: 12px;
-    }
-
-    .content-block p {
+    .compliance-section h2 {
+      margin-top: 24px;
       color: #333;
+    }
+    .compliance-section p {
+      color: #444;
       font-size: 1em;
-      line-height: 1.6em;
-    }
-
-    .code-block {
-      background: #1e1e1e;
-      color: white;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.9em;
-      border-radius: 8px;
-      padding: 16px;
-      overflow-x: auto;
-      margin: 20px 0;
-      box-shadow: 0 0 10px rgba(0,0,0,0.25);
-    }
-
-    .code-block span.highlight {
-      color: white;
-      font-weight: bold;
-    }
-
-    .highlight {
-      color: #66d9ef;
+      line-height: 1.6;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -74,7 +53,7 @@
       <div class="voltage-wrapper">
         <div class="nav-title-wrapper">
           <div class="nav-title">ZapCaptcha</div>
-          <svg class="zap-svg"> <!-- OMITTED --> </svg>
+          <svg class="zap-svg">...</svg>
           <div class="dots">
             <div class="dot dot-1"></div><div class="dot dot-2"></div>
             <div class="dot dot-3"></div><div class="dot dot-4"></div><div class="dot dot-5"></div>
@@ -83,59 +62,35 @@
         <div id="company">By <a href="https://www.qvlx.com" style="color: black; text-decoration: underline;">QVLx Labs</a></div>
       </div>
       <nav>
-        <a href="../index.html">🛖</a>
+        <a href="index.html">🛖</a>
         <a href="../features.html">Features</a>
-        <a href="/docs/">Documentation</a>
+        <a href="/docs/index.html">Documentation</a>
         <a href="https://www.qvlx.com/contact-us">Support</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section id="hero">
-      <h1>🛠️ Contributing to ZapCaptcha</h1>
-      <p class="subhead">Get involved in building a human-first, privacy-rooted CAPTCHA system.</p>
-    </section>
-
-    <div class="content-block">
-      <h2>Contributions Welcome</h2>
-      <p>We welcome contributions that help improve ZapCaptcha’s security, usability, and accessibility. This includes:</p>
-      <ul>
-        <li>✨ Code contributions and feature proposals</li>
-        <li>🔍 Bug reports or test cases</li>
-        <li>🧪 New entropy or trap mechanisms</li>
-        <li>📖 Documentation enhancements</li>
-        <li>🫙 Funding contributions</li>
-      </ul>
-
-      <h2>Licensing</h2>
-      <p>All code contributions must align with ZapCaptcha’s <strong>GPL 3 software license</strong></p>
-
-      <h2>Where to Submit Code</h2>
-      <p>If you'd like to contribute to the repo, check out:</p>
-      <div class="code-block">
-        <code><span class="highlight">https://github.com/QVLx-Labs/ZapCaptcha</span></code>
-      </div>
-
-      <h2>Where to Contact</h2>
-      <p>If you'd like to contribute or discuss an idea privately, email:</p>
-      <div class="code-block">
-        <code><span class="highlight">security@qvlx.com</span></code>
-      </div>
-
-      <h2>Forking / Sandbox Testing</h2>
-      <p>Feel free to experiment with your own front-end modifications using the provided public JS file. It's minified, but you can load it revert it locally and test overrides:</p>
-      <div class="code-block">
-        <code>
-&lt;script src="https://zapcaptcha.com/zapcaptcha.js"&gt;&lt;/script&gt;<br>
-        </code>
-      </div>
-
-      <h2>Stay Ethical</h2>
-      <p>All testing should respect terms of use. Do not submit malicious automation, bypass attempts, or obfuscation methods unless under ethical review and private disclosure.</p>
-
-      <h2>Thank You</h2>
-      <p>Every suggestion, test case, or fix makes ZapCaptcha stronger for the web community. 🙏</p>
+    <div class="compliance-section">
+      <h2>Privacy and GDPR Compliance</h2>
+      <p>ZapCaptcha does not collect, transmit, or store any user data. No cookies are used for tracking. All processing occurs in-browser. We do not log IP addresses, analytics, or behavioral telemetry.</p>
+    
+      <h2>WCAG 2.2 AA Accessibility</h2>
+      <p>ZapCaptcha meets core accessibility requirements:</p>
+      <p>✔️ ARIA roles and labels for screen readers</p>
+      <p>✔️ Keyboard operability (tab and enter)</p>
+      <p>✔️ Color contrast above WCAG thresholds</p>
+      <p>✔️ No flashing or motion hazards</p>
+    
+      <h2>CSSOM and CSP Compatibility</h2>
+      <p>ZapCaptcha uses CSSOM-injected rules to maintain a strict Content Security Policy (CSP) without inline styles or scripts. All CSS is dynamically injected into a same-origin style sheet and all resources can be served with permissive Access-Control-Allow-Origin headers from zapcaptcha.com. No external CSS fetches or CORS-dependent operations are performed, so no external API calls, XHR calls, and no connect-src directives are needed. This improves XSS resilience and supports enterprise-grade CSP configurations. All animations and layout rules are declared securely via JavaScript-injected stylesheets.</p>
+    
+      <h2>Security Compliance</h2>
+      <p>ZapCaptcha follows defense-in-depth practices, including:</p>
+      <p>✔️ Replay-protected nonces tied to client context</p>
+      <p>✔️ MutationObserver tamper detection</p>
+      <p>✔️ DOM and CSS integrity enforcement</p>
+      <p>✔️ Fingerprint evasion, timing entropy, and behavior probes</p>
     </div>
   </main>
 
