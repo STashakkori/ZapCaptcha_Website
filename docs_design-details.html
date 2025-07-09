@@ -1,0 +1,155 @@
+<!--
+  ZapCaptcha – Human-first cryptographic CAPTCHA system
+
+  Designed and developed by QVLx Labs.
+  https://www.qvlx.com
+
+  © 2024–2025 QVLx Labs. All rights reserved.
+  ZapCaptcha is a proprietary CAPTCHA system for front-end validation without backend server reliance.
+
+  This software is licensed for non-commercial use and authorized commercial use only.
+  Unauthorized reproduction, redistribution, or tampering is strictly prohibited.
+
+  ZapCaptcha includes anti-bot measures, DOM mutation traps, and telemetry hooks.
+  Attempted bypass, obfuscation, or automation is a violation of applicable laws and terms of use.
+
+  To license ZapCaptcha for enterprise/commercial use, contact:
+  security@qvlx.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Design Details – ZapCaptcha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preload" href="https://zapcaptcha.com/zapcaptcha.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://zapcaptcha.com/zapcaptcha.css"></noscript>
+  <style>
+    .content-block {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      text-align: left;
+    }
+
+    .content-block h2 {
+      color: #222;
+      font-size: 1.8em;
+      margin-bottom: 12px;
+    }
+
+    .content-block p {
+      color: #333;
+      font-size: 1em;
+      line-height: 1.6em;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #f8f8f2;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9em;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 20px 0;
+      box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    }
+
+    .code-block span.highlight {
+      color: #66d9ef;
+      font-weight: bold;
+    }
+
+    .highlight {
+      color: #66d9ef;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="voltage-wrapper">
+        <div class="nav-title-wrapper">
+          <div class="nav-title">ZapCaptcha</div>
+          <svg class="zap-svg"> <!-- OMITTED --> </svg>
+          <div class="dots">
+            <div class="dot dot-1"></div><div class="dot dot-2"></div>
+            <div class="dot dot-3"></div><div class="dot dot-4"></div><div class="dot dot-5"></div>
+          </div>
+        </div>
+        <div id="company">By <a href="https://www.qvlx.com" style="color: black; text-decoration: underline;">QVLx Labs</a></div>
+      </div>
+      <nav>
+        <a href="../index.html">🛖</a>
+        <a href="../features.html">Features</a>
+        <a href="https://www.qvlx.com/contact-us">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h1>🔬 ZapCaptcha Technical Design</h1>
+      <p class="subhead">Learn how ZapCaptcha defends against bots and threat actors in a pure client-side environment.</p>
+    </section>
+
+    <div class="content-block">
+      <h2>Core Philosophy</h2>
+      <p>ZapCaptcha operates without backend APIs. It’s built to defend static sites, JAMStack apps, and embedded systems using only HTML, CSS, and JavaScript. The design relies on cryptographic randomness, behavioral modeling, and structural validation — not identity or cloud logic.</p>
+
+      <h2>Key Components</h2>
+      <ul>
+        <li>🌀 <strong>Nonce Generation</strong>: Each CAPTCHA instance generates a random, single-use <span class="highlight">nonce</span> stored in cookies and <code>sessionStorage</code>.</li>
+        <li>🛡️ <strong>Replay Protection</strong>: If a user replays the same challenge, it's flagged and denied by internal validation. Nonces are invalidated immediately after verification.</li>
+        <li>🧠 <strong>Timing Entropy</strong>: Cryptographically randomized delays simulate real-world behavioral variation and resist brute-force emulation.</li>
+        <li>📦 <strong>Encapsulation</strong>: All user interaction flows through <span class="highlight">ZapCaptcha.verify()</span>, which handles timing, verification, and expiration.</li>
+        <li>🪞 <strong>Mutation Observation</strong>: A <code>MutationObserver</code> tracks changes to DOM nodes for tamper detection. Any removal or injection attempt invalidates the widget.</li>
+        <li>🔍 <strong>Headless & Automation Checks</strong>: Includes fingerprint-based detection of WebDriver, headless Chrome, Puppeteer, and console tampering.</li>
+      </ul>
+
+      <h2>Example: Manual Verification</h2>
+      <div class="code-block">
+        <code>
+window.ZapCaptcha?.verify(buttonElement, () =&gt; {<br>
+  // Success callback<br>
+  console.log("✅ Human verified");<br>
+});
+        </code>
+      </div>
+
+      <h2>Nonce Validation Internals</h2>
+      <p>The following mechanisms ensure strong nonce integrity:</p>
+      <ul>
+        <li>🔐 <strong>Cookie-based token:</strong> A nonce is stored in a `zc_*` cookie, scoped per box.</li>
+        <li>🧊 <strong>Session lock:</strong> The same nonce is mirrored in <code>sessionStorage</code> to prevent reuse across tabs.</li>
+        <li>🚫 <strong>Expiration:</strong> Nonces expire after a fixed delay (configurable with <code>data-zcap-timeout</code>).</li>
+      </ul>
+
+      <h2>Bot Trap Techniques</h2>
+      <p>To resist script automation, ZapCaptcha uses:</p>
+      <ul>
+        <li>🪤 Honeypot fields and hidden inputs</li>
+        <li>👁️ Viewport layout distortion</li>
+        <li>🧩 DOM mutation traps</li>
+        <li>🎯 Click accuracy tracking</li>
+        <li>🎭 Random ID/class obfuscation</li>
+      </ul>
+
+      <h2>Why This Matters</h2>
+      <p>Traditional CAPTCHAs rely on cloud APIs, opaque scoring systems, or visual challenges that frustrate users. ZapCaptcha brings CAPTCHA security back to the developer — transparent, inspectable, and free of external dependencies. It’s built to empower privacy-first apps and developers working in static, edge-hosted, or disconnected contexts.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="exclaim-tab">
+      <p id="exclaim">This site never saves or sells your data</p>
+    </div>
+    <div class="footer-content">
+      © 2025 QVLx Labs. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
