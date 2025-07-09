@@ -1,0 +1,211 @@
+<!--
+  ZapCaptcha – Human-first cryptographic CAPTCHA system
+
+  Designed and developed by QVLx Labs.
+  https://www.qvlx.com
+ 
+  © 2024–2025 QVLx Labs. All rights reserved.
+  ZapCaptcha is a proprietary CAPTCHA system for front-end validation without backend server reliance.
+ 
+  This software is licensed for non-commercial use and authorized commercial use only.
+  Unauthorized reproduction, redistribution, or tampering is strictly prohibited.
+ 
+  ZapCaptcha includes anti-bot measures, DOM mutation traps, and telemetry hooks.
+  Attempted bypass, obfuscation, or automation is a violation of applicable laws and terms of use.
+ 
+  To license ZapCaptcha for enterprise/commercial use, contact:
+  security@qvlx.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZapCaptcha Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preload" href="https://zapcaptcha.com/zapcaptcha.css" as="style" onload="this.rel='stylesheet'">
+  <style>
+    .subhead {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+  
+    .card-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 30px;
+      margin-bottom: 0px;
+    }
+
+    .doc-card {
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-align: left;
+      width: 260px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .doc-card:hover {
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+
+    .doc-card a {
+      /* text-decoration: none; */
+      color: #507E85;
+      font-size: 1.1em;
+      display: block;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .doc-card p {
+      color: #444;
+      font-size: 0.95em;
+      margin-top: 8px;
+    }
+    
+    a.doc-card {
+      background-color: #ffffff;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-align: left;
+      width: 260px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    a.doc-card:hover {
+      border: 2px solid cyan;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      transform: translateY(-3px);
+    }
+
+    a.doc-card h3 {
+      font-size: 1.2em;
+      color: #507E85;
+      margin: 0;
+      text-align: center;
+    }
+    
+    .jumbo-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      margin-bottom: 0px;
+    }
+    
+    .jumbo {
+      max-width: 560px; /* wider than doc cards */
+      background-color: #ffffff;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+      transition: all 0.2s ease;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+    
+    .jumbo a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .jumbo h3 {
+      font-size: 1.4em;
+      color: #507E85;
+      margin-bottom: 10px;
+    }
+    
+    .jumbo p {
+      font-size: 1em;
+      color: #333;
+    }
+    
+    .jumbo-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      border-radius: 12px;
+    }
+    
+    .jumbo-link:hover .jumbo {
+      border: 2px solid cyan;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="voltage-wrapper">
+        <div class="nav-title-wrapper">
+          <div class="nav-title">ZapCaptcha</div>
+          <svg class="zap-svg">...</svg> <!-- keep original -->
+          <div class="dots">
+            <div class="dot dot-1"></div><div class="dot dot-2"></div>
+            <div class="dot dot-3"></div><div class="dot dot-4"></div><div class="dot dot-5"></div>
+          </div>
+        </div>
+        <div id="company">By <a href="https://www.qvlx.com" style="color: black; text-decoration: underline;">QVLx Labs</a></div>
+      </div>
+      <nav>
+        <a href="../index.html">🛖</a>
+        <a href="../features.html">Features</a>
+        <a href="https://www.qvlx.com/contact-us">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h1>📚 ZapCaptcha Documentation</h1>
+      <p class="subhead">Integrate, test, and understand a unique kind of CAPTCHA system.</p>
+    </section>
+    <div class="jumbo-wrapper">
+      <a href="getting-started.html" class="jumbo-link">
+        <div class="jumbo">
+          <h3>Getting Started</h3>
+          <p>Installation, HTML/JS design, and integration best practices.</p>
+        </div>
+      </a>
+    </div>
+    <div class="card-grid">
+      <a href="security.html" class="doc-card">
+        <h3>Security</h3>
+        <p>Description of anti-tamper and other hardening features.</p>
+      </a>
+      <a href="design-details.html" class="doc-card">
+        <h3>Design Details</h3>
+        <p>Deep dive of how ZapCaptcha works under the hood.</p>
+      </a>
+      <a href="contributing.html" class="doc-card">
+        <h3>Contributing</h3>
+        <p>Forking, testing, security review, and contact info.</p>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="exclaim-tab">
+      <p id="exclaim">This site never saves or sells your data</p>
+    </div>
+    <div class="footer-content">
+      © 2025 QVLx Labs. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
