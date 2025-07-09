@@ -1,0 +1,434 @@
+<!--
+  ZapCaptcha – Human-first cryptographic CAPTCHA system
+
+  Designed and developed by QVLx Labs.
+  https://www.qvlx.com
+
+  © 2024–2025 QVLx Labs. All rights reserved.
+  ZapCaptcha is a proprietary CAPTCHA system for front-end validation without backend server reliance.
+
+  This software is licensed for non-commercial use and authorized commercial use only.
+  Unauthorized reproduction, redistribution, or tampering is strictly prohibited.
+
+  ZapCaptcha includes anti-bot measures, DOM mutation traps, and telemetry hooks.
+  Attempted bypass, obfuscation, or automation is a violation of applicable laws and terms of use.
+
+  To license ZapCaptcha for enterprise/commercial use, contact:
+  security@qvlx.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Getting Started – ZapCaptcha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preload" href="https://zapcaptcha.com/zapcaptcha.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://zapcaptcha.com/zapcaptcha.css"></noscript>
+  <style>
+    .content-block {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4px 20px;
+      text-align: left;
+    }
+
+    .content-block h2 {
+      color: #222;
+      font-size: 1.8em;
+      margin-bottom: 12px;
+    }
+
+    .content-block p {
+      color: #333;
+      font-size: 1em;
+      line-height: 1.6em;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #f8f8f2;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9em;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 20px 0px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.25);
+      position: relative;
+      padding-top: 2.5em; /* space for button */
+    }
+
+    .code-block pre {
+      margin: 0;
+      background: transparent;
+      border: none;
+      color: inherit;
+      font: inherit;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .code-block span.highlight {
+      color: #66d9ef;
+      font-weight: bold;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #333;
+      color: #fff;
+      border: none;
+      font-size: 14px;
+      padding: 5px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 10;
+      opacity: 0.8;
+    }
+
+    .copy-button:hover {
+      background: #666;
+      opacity: 1;
+    }
+    
+    .copy-tooltip {
+      position: absolute;
+      top: 2px;
+      right: 50px;
+      background: #222;
+      color: #fff;
+      font-size: 12px;
+      padding: 3px 6px;
+      border-radius: 4px;
+      opacity: 0.9;
+      z-index: 11;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    hero {
+      margin-bottom: 0 auto !important;
+    }
+    
+    #minilink {
+      background: #D175A7;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 3px;
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+    
+    #minilink:hover {
+      background: #66cbb0;
+    }
+    
+    .info {
+      background: #e5e4e2;
+      border-radius: 3px;
+      border: 1px solid black;
+      padding: 0px 10px 10px 30px;
+    }
+    
+    .info h2{
+      color: #523F39;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="voltage-wrapper">
+        <div class="nav-title-wrapper">
+          <div class="nav-title">ZapCaptcha</div>
+          <svg class="zap-svg"><!-- OMITTED --></svg>
+          <div class="dots">
+            <div class="dot dot-1"></div><div class="dot dot-2"></div>
+            <div class="dot dot-3"></div><div class="dot dot-4"></div><div class="dot dot-5"></div>
+          </div>
+        </div>
+        <div id="company">By <a href="https://www.qvlx.com" style="color: black; text-decoration: underline;">QVLx Labs</a></div>
+      </div>
+      <nav>
+        <a href="../index.html">🛖</a>
+        <a href="../features.html">Features</a>
+        <a href="https://www.qvlx.com/contact-us">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h1>🚀 Getting Started with ZapCaptcha</h1>
+      <p class="subhead">Follow these steps to integrate ZapCaptcha into your site in minutes.</p>
+      <div class="cta-wrapper">
+        <a href="https://www.qvlx.com/contact-us" class="cta-button">Get Additional Help</a>
+      </div>
+    </section>
+
+    <div class="content-block">
+      <h2>1. Include the ZapCaptcha JS</h2>
+      <p>Place this near the end of your document <b><code>&lt;body&gt;</code></b> to access the library:</p>
+      <div class="code-block">
+        <pre><code><span class="highlight">HTML</span><br>&lt;script src="https://www.zapcaptcha.com/zapcaptcha.js"&gt;&lt;/script&gt;</code></pre>
+      </div>
+      <br>
+      
+      <h2>2. Add Deterministic Head Elements</h2>
+      <p>These optional tags can go in your <b><code>&lt;head&gt;</code></b> section for best performance and determinism:</p>
+      <div class="code-block">
+        <pre><code><span class="highlight">HTML</span><br>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;<br>
+&lt;noscript&gt;&lt;link rel="stylesheet" href="https://zapcaptcha.com/zapcaptcha.css"&gt;&lt;/noscript&gt;</code></pre>
+      </div>
+      <small>⚠️You can squeeze out a negligible increase in performance by preloading the styles, but that violates CSR unless allowing unsafe in-line. Hence, we don't recommend doing this:<br>
+      <code>&lt;link rel="preload" href="https://zapcaptcha.com/zapcaptcha.css" as="style" onload="this.rel='stylesheet'"&gt;</code>
+      </small>
+      <br><br>
+      <br>
+      
+      <div class="info">
+      <h2>💡 From here, you have three paths you can take:</h2>
+      <p>3a. <a href="#3a" id="minilink">Inline Action</a> - Situation with a custom button to be CAPTCHA gated from performing a custom action.</p>
+      <p>3b. <a href="#3b" id="minilink">Form Submit</a> - Situation with a form submit button to be CAPTCHA gated from performing submit.</p>
+      <p>3c. <a href="#3c" id="minilink">Multi-CAPTCHA</a> - Situation with multiple elements, whether inline or submit, that you want CAPTCHA gated.</p>
+      </div>
+      <br>
+      
+      <h2 id="3a">3a. HTML for Inline CAPTCHA</h2>
+      <p>In the case where you have a button that performs an inline action, use this verification example to gate any trigger you want:</p>
+      <div class="code-block">
+        <pre><code><span class="highlight">HTML</span><br>
+&lt;div class="zcaptcha-box" data-zcap-timeout="5" data-target-id="example1_button"&gt;&lt;/div&gt;<br>
+&lt;button class="zapcaptcha-button" id="example1_button"&gt;Verify Me&lt;/button&gt;<br>
+&lt;div class="inline-result"&gt;&lt;/div&gt;</code></pre>
+      </div>
+      <p>Then proceed to the corresponding Javascript section <a href="#4a">4a</a></p>
+      <br>
+      
+      <h2 id="3b">3b. HTML for Form-Submit CAPTCHA</h2>
+      <p>In the case where you have a standard form submit button, use this verification example to gate your submit:</p>
+      <div class="code-block">
+        <pre><code><span class="highlight">HTML</span><br>
+&lt;form id="demoForm" action="success.html" method="POST"&gt;<br>
+  &nbsp;&lt;div class="zcaptcha-box" data-zcap-timeout="5" data-target-id="example2_button"&gt;&lt;/div&gt;<br>
+  &nbsp;&lt;input type="text" placeholder="Enter text here" required /&gt;<br>
+  &nbsp;&lt;button type="submit" class="zapcaptcha-button" id="example2_button"&gt;Submit&lt;/button&gt;<br>
+&lt;/form&gt;</code></pre>
+      </div>
+      <p>Then proceed to the corresponding Javascript section <a href="#4b">4b</a></p>
+      <br>
+      
+      <h2 id="3c">3c. Multi-CAPTCHA</h2>
+      <p>In the case where you have multiple CAPTCHAs, whether they are inline action or form submit, simply ensure that the <b><code>id</code></b> of your element to gate is unique and matches the <b><code>data_target_id</code></b> of its corresponding <b><code>zcaptcha-box</code></b></p>
+      <small>ℹ️ You can use any number of ZapCaptcha's on your page.</small>
+      <br>
+      <div class="code-block">
+        <pre><code><span class="highlight">HTML</span><br>
+&lt;form id="example-1" method="post"&gt;<br>
+&lt;div class="zcaptcha-box" data-target-id="example-1" data-zcap-timeout="30"&gt;&lt;/div&gt;<br><br>
+&lt;form id="example-2" method="post"&gt;<br>
+&lt;div class="zcaptcha-box" data-target-id="example-2" data-zcap-timeout="30"&gt;&lt;/div&gt;</code></pre>
+      </div>
+      <p>Then proceed to the corresponding Javascript section <a href="#4c">4c</a></p>
+      <br>
+      
+      <div class="info">
+      <h2>💡 Customization options available for your CAPTCHA</h2>
+      <p>ℹ️CAPTCHA timeout can be set using the <b><code>data-zcap-timeout</code></b> attribute. If not set, uses default of 1 minute.</p>
+      <small>&nbsp;&nbsp;Example: <code>&lt;div class="zcaptcha-box" data-target-id="example" <b>data-zcap-timeout="120"</b>&gt;&lt;/div&gt;</code></small><br>
+      <p>ℹ️Compact mode is set using the <b><code>data-size</code></b> attribute. Great when spatially restricted. If not set, defaults.</p>
+      <small>&nbsp;&nbsp;Example: <code>&lt;div class="zcaptcha-box" data-target-id="example" <b>data-size="compact"</b>&gt;&lt;/div&gt;</code></small><br>
+      </div>
+      <br>
+      
+      <h2 id="4a">4a. Inline Action JavaScript</h2>
+      <p>Use <b><code>ZapCaptcha.verify()</code></b> with a trigger and success callback:</p>
+      <div class="code-block">
+        <pre><code><span class="highlight">Javascript</span><br>
+// In-line trigger needs this code (3a)<br>
+window.addEventListener("DOMContentLoaded", () =&gt; {<br>
+  const inlineTrigger = document.getElementById("example1_button");<br>
+  if (inlineTrigger) {<br>
+    inlineTrigger.addEventListener("click", (e) =&gt; {<br>
+      e.preventDefault();<br>
+      const result = inlineTrigger.closest(".example-box")?.querySelector(".inline-result");<br>
+      window.ZapCaptcha?.verify(inlineTrigger, () =&gt; {<br>
+        if (result) result.textContent = "✅ Human verified!";<br>
+      });<br>
+    });<br>
+  }</code></pre>
+      </div>
+      <br>
+      
+      <h2 id="4b">4b. Form Submit JavaScript</h2>
+      <p>Use <b>ZapCaptcha.verify()</b> with a trigger and submit on success:</p>
+      <div class="code-block">
+        <pre><code><span class="highlight">Javascript</span><br>
+// Form submit needs this code (3b)<br>
+  const formTrigger = document.getElementById("example2_button");<br>
+  if (formTrigger) {<br>
+    formTrigger.addEventListener("click", (e) =&gt; {<br>
+      e.preventDefault();<br>
+      const form = document.getElementById("demoForm");<br>
+      window.ZapCaptcha?.verify(formTrigger, () =&gt; {<br>
+        form.submit();<br>
+      });<br>
+    });<br>
+  }<br>
+});</code></pre>
+      </div>
+      <br>
+      
+      <h2 id="4c">4c. Multi-CAPTCHA JavaScript</h2>
+<p>Loop to find the caller for <b> ZapCaptcha.verify()</b> then handle:</p>
+<div class="code-block">
+  <pre><code><span class="highlight">JavaScript</span><br>
+window.addEventListener("DOMContentLoaded", () =&gt; {<br>
+  document.querySelectorAll(".zcaptcha-box").forEach(box =&gt; {<br>
+    const targetId = box.getAttribute("data-target-id");<br>
+    if (!targetId) return;<br><br>
+    const trigger = document.getElementById(targetId);<br>
+    if (!trigger || trigger.dataset.bound) return;<br><br>
+    const form = trigger.closest("form");<br><br>
+    trigger.dataset.bound = "true";<br>
+    trigger.addEventListener("click", e =&gt; {<br>
+      e.preventDefault();<br><br>
+      window.ZapCaptcha?.verify(trigger, () =&gt; {<br>
+        const overlay = document.getElementById("overlay");<br>
+        if (overlay) overlay.style.display = "block";<br>
+        if (form) form.submit();<br>
+      });<br>
+    });<br>
+  });<br>
+});</code></pre>
+</div>
+<br>
+
+      <h2>5. Set ZapCaptcha Options</h2>
+      <p>Use metatag passed options in the HTML to customize your CAPTCHA.</p><br>
+
+      <h3>Overview</h3>
+      <p>Users can override default parameters using the <b><code>zap-flags</code></b> metatag and passing flags in HTML.</p><br>
+
+      <h3>viewportConfined</h3>
+      <p>By default, ZapCaptcha restricts the challenge hitbox spawn and exploration space to the viewport. This is to prevent frustration with having to find an offscreen hitbox.</p>
+      <p>However, this option is not set in stone and can be toggled using <b><code>viewportConfined</code></b>. To turn this safegaurd off, use the following metatag syntax:</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="viewportConfined = true"&gt;</code></pre>
+      </div>
+      <p>Turning off <b><code>viewportConfined</code></b> allows for a slightly more explorative and challenging CAPTCHA that sacrifices user experience to lower bot success rate. Of course, keep in mind unconfined viewport mode is meaningless if the document height is less than or equal to the viewport height.</p>
+
+      <br>
+      <h3 id="security">Security configuration</h3>
+      <p>By default, ZapCaptcha imposes <b>no security restrictions whatsoever</b>. It is up to the developer to set the mitigations that they would like in place.</p>
+      <p>Luckily, setting all of the security flags at once is easy. To turn all countermeasures on, use the <b><code>allsec</code></b> flag like so:
+      
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="allsec = true"&gt;</code></pre>
+      </div>
+      
+      <br><small>ℹ️ Setting the <b><code>allsec</code></b> flag to does NOT turn off the <b><code>viewportConfined</code></b> capability.</small><br><br>
+      
+      <p>However in most cases, turning on all security flags is too restrictive and can lead to unintended resultant user experience consequences. A recommended approach is to explicitly enable the desired protections.</p>
+      <p>For example, to restrict user clicking to only interactive elements (buttons, forms, links, etc) while also enabling canvas spoofing protection, use the following metatag and flags:</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="clickBlockEnforcement = true, canvasSpoofingCheck = true"&gt;</code></pre>
+      </div>
+      <p>Just these two settings alone are a pretty resonable policy for most public-facing websites. But please do tailor ZapCaptcha security to your needs.</p>
+      
+      <br><small>ℹ️ Setting the <b><code>clickBlockEnforcement</code></b> flag enforces policy but does not detect and lockout.</small><br><br>
+      
+      <br><small>ℹ️ Setting the <b><code>devToolsDetection</code></b> flag prints warnings to the console, it does not result in a lockout.</small><br><br>
+      
+      <br><small>ℹ️ All other security flags result in user lockout when the threat criteria is met.</small><br><br>
+
+      <p>The full list of security options are listed below.</p>
+
+      <br>
+      <div class="info">
+      <h2>💡 Security options available for your CAPTCHA</h2>
+      <p>🔐<b>consoleTamperDetection</b> - Detects if the browser console is opened or manipulated.</p>
+      <p>🔐<b>debuggerTimerDetection</b> - Checks for active DevTools via size probing and inspection side effects.</p>
+      <p>🔐<b>devToolsDetection</b> - Validates JavaScript integrity by comparing against a known checksum.</p>
+      <p>🔐<b>checksumJS</b> - Validates JavaScript integrity by comparing against a known checksum.</p>
+      <p>🔐<b>checksumCSS</b> - Validates CSS stylesheet integrity using precomputed hash values.</p>
+      <p>🔐<b>clickBlockEnforcement</b> - Enforces overlay protection to block user interaction during CAPTCHA.</p>
+      <p>🔐<b>functionTamperCheck</b> - Detects tampering with core functions like addEventListener or setTimeout.</p>
+      <p>🔐<b>canvasSpoofingCheck</b> - Detects canvas fingerprinting spoofing by validating rendered pixel data.</p>
+      <p>🔐<b>headlessBrowserCheck</b> - Identifies headless environments like Puppeteer or Selenium.</p>
+      <p>🔐<b>cssOverrideDetection</b> - Detects unauthorized style overrides or external CSS injection.</p>
+      </div>
+      
+      <p>When using the <b><code>checksumJS</code></b> and <b><code>checksumCSS</code></b> flags, no enforcement will be done unless hashes are provided via metatags:</p>
+      
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-js-integrity" content="sha384-e0b4b8c6b29182b1ab9f576202743ab069dba5e315619493641399196473847511886764bf00253c764192c928c7116e"&gt;</code></pre>
+      </div>
+      
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-css-integrity" content="sha384-e0b4b8c6b29182b1ab9f576202743ab069dba5e315619493641399196473847511886764bf00253c764192c928c7116e"&gt;</code></pre>
+      </div>
+      
+      <p>Once the metatags are provided, the ZapCaptcha inner workings will check the sha384 sum provided in the metatag against the golden copies. Any tampering to the source code will result in immediate feedback and lockout.<p>
+      
+      <h2>✅ You're Done</h2>
+      <p>That's it! You now have a fully working zero server CAPTCHA system with bot resistance, replay defense, and much more.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="exclaim-tab">
+      <p id="exclaim">This site never saves or sells your data</p>
+    </div>
+    <div class="footer-content">
+      © 2025 QVLx Labs. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".code-block").forEach(block => {
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.setAttribute("aria-label", "Copy code to clipboard");
+        button.textContent = "📋";
+  
+        const tooltip = document.createElement("div");
+        tooltip.className = "copy-tooltip";
+        tooltip.textContent = "Copied!";
+        tooltip.style.display = "none";
+  
+        // Append both elements first
+        block.appendChild(button);
+        block.appendChild(tooltip);
+  
+        button.addEventListener("click", () => {
+          const code = block.querySelector("code");
+          const clone = code.cloneNode(true);
+          clone.querySelectorAll("span.highlight").forEach(el => {
+            el.replaceWith(el.textContent);
+          });
+          const text = clone.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            button.textContent = "✅";
+            tooltip.style.display = "block";
+            setTimeout(() => {
+              tooltip.style.display = "none";
+              button.textContent = "📋";
+            }, 1200);
+          }).catch(() => {
+            button.textContent = "❌";
+            setTimeout(() => button.textContent = "📋", 1200);
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
