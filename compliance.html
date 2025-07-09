@@ -1,0 +1,106 @@
+<!--
+  ZapCaptcha – Human-first cryptographic CAPTCHA system
+
+  Designed and developed by QVLx Labs.
+  https://www.qvlx.com
+ 
+  © 2024–2025 QVLx Labs. All rights reserved.
+  ZapCaptcha is a proprietary CAPTCHA system for front-end validation without backend server reliance.
+ 
+  This software is licensed for non-commercial use and authorized commercial use only.
+  Unauthorized reproduction, redistribution, or tampering is strictly prohibited.
+ 
+  ZapCaptcha includes anti-bot measures, DOM mutation traps, and telemetry hooks.
+  Attempted bypass, obfuscation, or automation is a violation of applicable laws and terms of use.
+ 
+  To license ZapCaptcha for enterprise/commercial use, contact:
+  security@qvlx.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZapCaptcha Compliance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preload" href="https://zapcaptcha.com/zapcaptcha.css" as="style" onload="this.rel='stylesheet'">
+  <style>
+    .subhead {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+    .compliance-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .compliance-section h2 {
+      margin-top: 24px;
+      color: #333;
+    }
+    .compliance-section p {
+      color: #444;
+      font-size: 1em;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="voltage-wrapper">
+        <div class="nav-title-wrapper">
+          <div class="nav-title">ZapCaptcha</div>
+          <svg class="zap-svg">...</svg>
+          <div class="dots">
+            <div class="dot dot-1"></div><div class="dot dot-2"></div>
+            <div class="dot dot-3"></div><div class="dot dot-4"></div><div class="dot dot-5"></div>
+          </div>
+        </div>
+        <div id="company">By <a href="https://www.qvlx.com" style="color: black; text-decoration: underline;">QVLx Labs</a></div>
+      </div>
+      <nav>
+        <a href="index.html">🛖</a>
+        <a href="../features.html">Features</a>
+        <a href="/docs/index.html">Documentation</a>
+        <a href="https://www.qvlx.com/contact-us">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="compliance-section">
+      <h2>Privacy and GDPR Compliance</h2>
+      <p>ZapCaptcha does not collect, transmit, or store any user data. No cookies are used for tracking. All processing occurs in-browser. We do not log IP addresses, analytics, or behavioral telemetry.</p>
+    
+      <h2>WCAG 2.2 AA Accessibility</h2>
+      <p>ZapCaptcha meets core accessibility requirements:</p>
+      <p>✔️ ARIA roles and labels for screen readers</p>
+      <p>✔️ Keyboard operability (tab and enter)</p>
+      <p>✔️ Color contrast above WCAG thresholds</p>
+      <p>✔️ No flashing or motion hazards</p>
+    
+      <h2>CSSOM and CSP Compatibility</h2>
+      <p>ZapCaptcha uses CSSOM-injected rules to maintain a strict Content Security Policy (CSP) without inline styles or scripts. All CSS is dynamically injected into a same-origin style sheet and all resources can be served with permissive Access-Control-Allow-Origin headers from zapcaptcha.com. No external CSS fetches or CORS-dependent operations are performed, so no external API calls, XHR calls, and no connect-src directives are needed. This improves XSS resilience and supports enterprise-grade CSP configurations. All animations and layout rules are declared securely via JavaScript-injected stylesheets.</p>
+    
+      <h2>Security Compliance</h2>
+      <p>ZapCaptcha follows defense-in-depth practices, including:</p>
+      <p>✔️ Replay-protected nonces tied to client context</p>
+      <p>✔️ MutationObserver tamper detection</p>
+      <p>✔️ DOM and CSS integrity enforcement</p>
+      <p>✔️ Fingerprint evasion, timing entropy, and behavior probes</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="exclaim-tab">
+      <p id="exclaim">This site never saves or sells your data</p>
+    </div>
+    <div class="footer-content">
+      © 2025 QVLx Labs. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
