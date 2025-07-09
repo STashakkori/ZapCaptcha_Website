@@ -90,7 +90,39 @@ window.addEventListener("DOMContentLoaded", () => {
       button.classList.add('gleaming');
 
       // Schedule next gleam cycle
-      setTimeout(restartGleam, 17000); // 10s delay between gleams
+      setTimeout(restartGleam, 15000); // delay between gleams
+    };
+
+    // Initial trigger
+    setTimeout(restartGleam, 5300); // optional small delay on first run
+  });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.cta-button').forEach(button => {
+    const restartGleam = () => {
+      button.classList.remove('gleaming');
+      void button.offsetWidth; // Force reflow
+      button.classList.add('gleaming');
+
+      // Schedule next gleam cycle
+      setTimeout(restartGleam, 15000); // delay between gleams
+    };
+
+    // Initial trigger
+    setTimeout(restartGleam, 5300); // optional small delay on first run
+  });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.opener').forEach(button => {
+    const restartGleam = () => {
+      button.classList.remove('gleaming');
+      void button.offsetWidth; // Force reflow
+      button.classList.add('gleaming');
+
+      // Schedule next gleam cycle
+      setTimeout(restartGleam, 15000); // delay between gleams
     };
 
     // Initial trigger
