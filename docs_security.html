@@ -1,0 +1,255 @@
+<!--
+  ZapCaptcha – Human-first cryptographic CAPTCHA system
+
+  Designed and developed by QVLx Labs.
+  https://www.qvlx.com
+ 
+  © 2024–2025 QVLx Labs. All rights reserved.
+  ZapCaptcha is a proprietary CAPTCHA system for front-end validation without backend server reliance.
+ 
+  This software is licensed for non-commercial use and authorized commercial use only.
+  Unauthorized reproduction, redistribution, or tampering is strictly prohibited.
+ 
+  ZapCaptcha includes anti-bot measures, DOM mutation traps, and telemetry hooks.
+  Attempted bypass, obfuscation, or automation is a violation of applicable laws and terms of use.
+ 
+  To license ZapCaptcha for enterprise/commercial use, contact:
+  security@qvlx.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZapCaptcha Security</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preload" href="https://zapcaptcha.com/zapcaptcha.css" as="style" onload="this.rel='stylesheet'">
+  <style>
+    .subhead {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+  
+    .security-wrapper {
+      margin: 0 auto !important;
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.7;
+      font-size: 1.05em;
+      color: #222;
+    }
+
+    .security-wrapper h2 {
+      font-size: 1.8em;
+      color: #1c2b33;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 6px;
+    }
+
+    .security-wrapper h3 {
+      font-size: 1.3em;
+      color: #303c44;
+    }
+
+    .security-wrapper p {
+      margin-top: 12px;
+    }
+
+    .security-wrapper code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    .security-wrapper pre {
+      background-color: #f9f9f9;
+      border-left: 4px solid #004455;
+      padding: 10px 14px;
+      font-family: monospace;
+      font-size: 0.95em;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      margin-top: 10px;
+    }
+
+    .arrow-list {
+      padding-left: 0;
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    .arrow-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .arrow-list li::before {
+      content: "▶";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      font-size: 0.75em;
+      color: #333;
+    }
+
+    .security-matrix {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+      font-size: 0.93em;
+    }
+
+    .security-matrix th,
+    .security-matrix td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .security-matrix th {
+      background: #f0f0f0;
+      font-weight: 600;
+    }
+    
+    h4 {
+      background: white;
+      text-align: left;
+      border: 1px dotted black;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="voltage-wrapper">
+        <div class="nav-title-wrapper">
+          <div class="nav-title">ZapCaptcha</div>
+          <svg class="zap-svg">...</svg>
+          <div class="dots">
+            <div class="dot dot-1"></div><div class="dot dot-2"></div>
+            <div class="dot dot-3"></div><div class="dot dot-4"></div><div class="dot dot-5"></div>
+          </div>
+        </div>
+        <div id="company">By <a href="https://www.qvlx.com" style="color: black; text-decoration: underline;">QVLx Labs</a></div>
+      </div>
+      <nav>
+        <a href="index.html">🛖</a>
+        <a href="../features.html">Features</a>
+        <a href="https://www.qvlx.com/contact-us">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h1>Security Architecture</h1>
+      <p class="subhead">Hardened, Verifiable, Tamper-Resistant CAPTCHA Defense.</p>
+      <div class="cta-wrapper">
+        <a href="/docs/getting-started.html#security" class="cta-button">Use Security Features</a>
+      </div>
+    </section>
+
+    <div class="security-wrapper">
+      <h2>Cryptographic Enforcement</h2>
+      <p>ZapCaptcha generates a one-time <code>zc_*</code> nonce per session. It is stored in both <code>sessionStorage</code> and a cookie, preventing replay across tabs, frames, or origins.</p>
+      <pre>sessionStorage["zc_abc123"] = "a7vP21B9eU...";</pre>
+
+      <p>Each widget supports timeout expiration after successful verification via <code>data-zcap-timeout</code>. This prevents long-lived spoofable sessions.</p>
+      <pre>box.addEventListener("zapcaptcha-expired", e => {
+  alert("CAPTCHA expired!");});</pre>
+
+      <p>Canvas fingerprinting links the visual interaction session to the entropy of the client device — ensuring session binding without backend storage.</p>
+
+      <h4>💡 ZapCaptcha uses sha-384 for integrity assurance of javascript and CSS. The 192-bit security of the 386 algorithm was chosen over 256 despite a small performance tradeoff due to largely improved collision and preimage resistance.</h4>
+
+      <h2>DOM Hardening</h2>
+      <p>ZapCaptcha uses <code>MutationObserver</code> to reinsert deleted elements such as:</p>
+      <ul class="arrow-list">
+        <li><code>.zcaptcha-box</code></li>
+        <li>The floating verifier (bouncer)</li>
+        <li>Verification labels</li>
+      </ul>
+
+      <p>All rendering integrity is enforced via CSSOM, and a fallback DOM-only mode activates if the required viewport meta is missing:</p>
+      <pre>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"&gt;</pre>
+
+      <h2>Automation Detection</h2>
+      <p>ZapCaptcha detects headless environments and synthetic input by inspecting:</p>
+      <ul class="arrow-list">
+        <li><code>navigator.webdriver === true</code></li>
+        <li><code>navigator.plugins.length === 0</code></li>
+        <li>User agent contains <code>HeadlessChrome</code></li>
+        <li>Notification permission state mismatches</li>
+      </ul>
+
+      <p>All simulated clicks (via JS or keyboard) are discarded. Only true pointer events on the animated surface succeed.</p>
+
+      <h2>Anti-Tamper Engineering</h2>
+      <p>Global API surface is frozen:</p>
+      <pre>Object.freeze(window.ZapCaptcha);
+Object.defineProperty(window, "ZapCaptcha", { writable: false });</pre>
+
+      <p>All internal logic functions are hashed and verified for runtime integrity. Console methods are optionally sealed:</p>
+      <pre>console.log = () => { throw new Error("Console tampering detected"); }</pre>
+
+      <h2>CSSOM & CSP Alignment</h2>
+      <p>ZapCaptcha does not use inline styles or <code>&lt;style&gt;</code> tags. All visuals are inserted via:</p>
+      <pre>zapStyleSheet.insertRule(".bouncer { animation: bounce 3s infinite; }");</pre>
+
+      <ul class="arrow-list">
+        <li>Compatible with CSP headers disallowing <code>unsafe-inline</code></li>
+        <li>Subresource Integrity (SRI) ready</li>
+        <li>No cross-origin fetches or XHR requests</li>
+      </ul>
+
+      <h2>Bot Traps & Decoys</h2>
+      <ul class="arrow-list">
+        <li>Randomized honeypot inputs inserted in the DOM</li>
+        <li>Static fake CAPTCHA rendered early in page load</li>
+        <li>Captcha widget inserted with randomized delay</li>
+      </ul>
+
+      <h2>Lifecycle Events</h2>
+      <p>These events can be captured:</p>
+      <ul class="arrow-list">
+        <li><code>zapcaptcha-verified</code> — human verification complete</li>
+        <li><code>zapcaptcha-expired</code> — verified session expired</li>
+      </ul>
+
+      <h2>Threat–Defense Matrix</h2>
+      <table class="security-matrix" style="background: white; text-align: center;">
+        <thead>
+          <tr><th>Threat</th><th>Defense</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Replay Attack</td><td>Nonce + session binding</td></tr>
+          <tr><td>Timeout Evasion</td><td>Post-verification timers</td></tr>
+          <tr><td>Bot Frameworks</td><td>Headless & behavior traps</td></tr>
+          <tr><td>DOM Tampering</td><td>MutationObserver + reinsertion</td></tr>
+          <tr><td>Click Emulation</td><td>Pointer-only event enforcement</td></tr>
+          <tr><td>Script Mutation</td><td>Freeze + hash-based integrity</td></tr>
+          <tr><td>Style Injection</td><td>CSSOM-only rules</td></tr>
+          <tr><td>Auto-fill Bots</td><td>Decoy checkboxes and inputs</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Continuous Audit Process</h2>
+      <p>ZapCaptcha is tested regularly against tools like <code>Puppeteer</code>, <code>Selenium</code>, and <code>Playwright</code>, ensuring it resists DOM snapshots, synthetic interaction, and frame injection across all major browsers and devices.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="exclaim-tab">
+      <p id="exclaim">This site never saves or sells your data</p>
+    </div>
+    <div class="footer-content">
+      © 2025 QVLx Labs. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
