@@ -90,10 +90,10 @@ window.addEventListener("DOMContentLoaded", () => {
       button.classList.add('gleaming');
 
       // Schedule next gleam cycle
-      setTimeout(restartGleam, 21000); // 10s delay between gleams
+      setTimeout(restartGleam, 17000); // 10s delay between gleams
     };
 
     // Initial trigger
-    setTimeout(restartGleam, 7000); // optional small delay on first run
+    setTimeout(restartGleam, 5300); // optional small delay on first run
   });
 });
