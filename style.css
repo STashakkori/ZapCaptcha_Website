@@ -389,7 +389,9 @@ input[type="text"]:focus {
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 114, 255, 0.3);
+  box-shadow: 
+    0 4px 10px rgba(0, 114, 255, 0.3),   /* outer blue shadow */
+    inset 0 1px 6px rgba(255, 255, 255, 0.5);  /* inner white glow */
   transition: all 0.25s ease-in-out;
   overflow: hidden;
   z-index: 1;
@@ -418,7 +420,56 @@ input[type="text"]:focus {
 }
 
 .zapcaptcha-button.gleaming::before {
-  animation: gleam-boomerang 6s ease-in-out;
+  animation: gleam-boomerang 4.8s ease-in-out;
+  opacity: 1;
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 58%;
+  height: 100%;
+  background: linear-gradient(
+    102deg,
+    rgba(255, 255, 200, 0) 0%,
+    rgba(255, 255, 160, 0.4) 45%,
+    rgba(255, 255, 200, 0) 72%
+  );
+  transform: skewX(-23deg);
+  pointer-events: none;
+  animation: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cta-button.gleaming::before {
+  animation: gleam-boomerang 4.8s ease-in-out;
+  opacity: 1;
+}
+
+/* Second Gleam overlay */
+.cta-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 90%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 200, 0) 0%,
+    rgba(255, 255, 160, 0.4) 45%,
+    rgba(255, 255, 200, 0) 72%
+  );
+  transform: skewX(-23deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cta-button.gleaming::after {
+  animation: unified-gleam 1s ease-in-out forwards;
   opacity: 1;
 }
 
@@ -432,7 +483,7 @@ input[type="text"]:focus {
   100%  { left: -120%; }     /* End fully hidden */
 }
 
-/* NEW: Gleam overlay */
+/* Second Gleam overlay */
 .zapcaptcha-button::after {
   content: '';
   position: absolute;
@@ -515,6 +566,8 @@ dl dt a {
 
 /* Button style */
 .opener {
+  position: relative;
+  overflow: hidden;
   background-color: #D1937D;
   display: inline-block;
   border-radius: 16px;
@@ -524,7 +577,10 @@ dl dt a {
   font-weight: bold;
   color: white;
   text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0, 114, 255, 0.3);
+  box-shadow: 
+    0 4px 10px rgba(0, 114, 255, 0.3),   /* outer blue shadow */
+    inset 0 1px 6px rgba(255, 255, 255, 0.5);  /* inner white glow */
+  
   /* transition: all 0.2s ease-in-out; */
 }
 
@@ -537,6 +593,56 @@ dl dt a {
 .opener:active {
   transform: translateY(1px);
   background-color: #5fbca3;
+}
+
+.opener::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 58%;
+  height: 100%;
+  background: linear-gradient(
+    102deg,
+    rgba(255, 255, 200, 0) 0%,
+    rgba(255, 255, 160, 0.4) 45%,
+    rgba(255, 255, 200, 0) 72%
+  );
+  transform: skewX(-23deg);
+  pointer-events: none;
+  animation: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: inherit;
+}
+
+.opener.gleaming::before {
+  animation: gleam-boomerang 4.8s ease-in-out;
+  opacity: 1;
+}
+
+.opener::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 90%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 200, 0) 0%,
+    rgba(255, 255, 160, 0.4) 45%,
+    rgba(255, 255, 200, 0) 72%
+  );
+  transform: skewX(-23deg);
+  opacity: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.opener.gleaming::after {
+  animation: unified-gleam 1s ease-in-out forwards;
+  opacity: 1;
 }
 
 .heading-with-toggle h2 {
@@ -634,6 +740,8 @@ dl dt a {
 }
 
 .cta-button {
+  position: relative;
+  overflow: hidden;
   background: #ba7dd1;
   color: white;
   text-decoration: none;
@@ -641,7 +749,9 @@ dl dt a {
   font-weight: bold;
   padding: 12px 24px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 114, 255, 0.25);
+  box-shadow: 
+    0 4px 10px rgba(0, 114, 255, 0.3),   /* outer blue shadow */
+    inset 0 1px 6px rgba(255, 255, 255, 0.5);  /* inner white glow */
   transition: background 0.3s, transform 0.2s;
 }
 
