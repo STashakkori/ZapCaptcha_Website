@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZapCaptcha Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <!-- <meta name="zap-js-integrity" content="sha384-e0b4b8c6b29182b1ab9f576202743ab069dba5e315619493641399196473847511886764bf00253c764192c928c7116e"> -->
+  <!-- <meta name="zap-css-integrity" content="sha256-e0b4b8c6b29182b1ab9f576202743ab069dba5e315619493641399196473847511886764bf00253c764192c928c7116e"> -->
+  <link rel="stylesheet" href="/static/style.css" /> 
+  <noscript><link rel="stylesheet" href="https://zapcaptcha.com/zapcaptcha.css"></noscript>
+  <meta name="zap-flags" content="allsec = false, serverMode = true">
+  <meta name="zap-server-pubkey" content="-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnw+VURpbUDInPo2lZZZ0cLZFaJ4XGibcnEfMwQmOy7q2T2TtZM27adK7/aBY1/SMa90V13dk6mu+oPXTZzWWaXtnwnH4FkyUMBCqIEvfzTspUGco/+nmJ9fT8k40ATUGaLfqI/Ues+Sp/WMzPgLCid5Pdo0HRb1Cv20/8kFZrfSUopCDkhpUHrFtkbTdWnGbkbHiobEOSlp+SoEt+6FKHDcRBLo6pwO6Ny7sd46y0Z9Q20FecdIWo5DsH9dX4MVJqkeBHoqvX3702EhbycDi8qeOPWfHaUjbx6CZm7XHBcT/BRqIghyNvXGcCqbLZpCi71GsWeGQa/M4amM2lvzduwIDAQAB-----END PUBLIC KEY-----">
+  <meta name="csp-nonce" content="abc123xyz">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://zapcaptcha.com;
+    style-src 'self' https://zapcaptcha.com 'nonce-abc123xyz';
+    img-src 'self' https://zapcaptcha.com data: blob:;
+    object-src 'none';
+    connect-src 'self' https://ipapi.co/json/ https://zapcaptcha.com;
+    base-uri 'self';
+  ">
+
+</head>
+<body>
+  <div class="example-box">
+    <div class="heading-with-toggle">
+      <h2>Inline Verification Demo</h2>
+    </div>
+
+    <!-- Trigger Button -->
+    <button id="example_button" class="zapcaptcha-button" aria-label="CAPTCHA verify">
+      Verify Me
+    </button>
+
+    <!-- CAPTCHA Verification Container -->
+    <div class="zcaptcha-box" data-target-id="example_button" data-zcap-timeout="10">
+      <div class="zcaptcha-label">For humans only</div>
+      <div class="zcaptcha-left"><span>I am human</span></div>
+      <div class="zcaptcha-footer">Privacy · Terms</div>
+    </div>
+
+    <!-- Result Display -->
+    <div class="inline-result"></div>
+  </div>
+
+  <script type="module" src="https://zapcaptcha.com/zapcaptcha.js"></script>
+  <script src="/static/script.js"></script>
+</body>
