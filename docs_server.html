@@ -1,0 +1,542 @@
+<!--
+  ZapCaptcha – Human-first cryptographic CAPTCHA system
+
+  Designed and developed by QVLx Labs.
+  https://www.qvlx.com
+
+  © 2024–2025 QVLx Labs. All rights reserved.
+  ZapCaptcha is a proprietary CAPTCHA system for front-end validation without backend server reliance.
+
+  This software is licensed for non-commercial use and authorized commercial use only.
+  Unauthorized reproduction, redistribution, or tampering is strictly prohibited.
+
+  ZapCaptcha includes anti-bot measures, DOM mutation traps, and telemetry hooks.
+  Attempted bypass, obfuscation, or automation is a violation of applicable laws and terms of use.
+
+  To license ZapCaptcha for enterprise/commercial use, contact:
+  security@qvlx.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Getting Started – ZapCaptcha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preload" href="https://zapcaptcha.com/zapcaptcha.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://zapcaptcha.com/zapcaptcha.css"></noscript>
+  <style>
+    .content-block {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4px 20px;
+      text-align: left;
+    }
+
+    .content-block h2 {
+      color: #222;
+      font-size: 1.8em;
+      margin-bottom: 12px;
+    }
+
+    .content-block p {
+      color: #333;
+      font-size: 1em;
+      line-height: 1.6em;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #f8f8f2;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9em;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 20px 0px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.25);
+      position: relative;
+      padding-top: 2.5em; /* space for button */
+    }
+
+    .code-block pre {
+      margin: 0;
+      background: transparent;
+      border: none;
+      color: inherit;
+      font: inherit;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .code-block span.highlight {
+      color: #66d9ef;
+      font-weight: bold;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #333;
+      color: #fff;
+      border: none;
+      font-size: 14px;
+      padding: 5px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 10;
+      opacity: 0.8;
+    }
+
+    .copy-button:hover {
+      background: #666;
+      opacity: 1;
+    }
+    
+    .copy-tooltip {
+      position: absolute;
+      top: 2px;
+      right: 50px;
+      background: #222;
+      color: #fff;
+      font-size: 12px;
+      padding: 3px 6px;
+      border-radius: 4px;
+      opacity: 0.9;
+      z-index: 11;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    hero {
+      margin-bottom: 0 auto !important;
+    }
+    
+    #minilink {
+      background: #D175A7;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 3px;
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+    
+    #minilink:hover {
+      background: #66cbb0;
+    }
+    
+    .info {
+      background: #e5e4e2;
+      border-radius: 8px;
+      border: 1px solid black;
+      padding: 0px 10px 10px 30px;
+    }
+    
+    .info h2{
+      color: #523F39;
+    }
+    
+    .nav-buttons {
+      width: 900px;
+      margin: 30px auto 40px auto;
+      padding: 10px 20px;
+      text-align: center;
+      background: #66ACB3;
+      border-radius: 8px;
+    }
+    
+    .nav-buttons .nav-label {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #333;
+    }
+    
+    .nav-buttons .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .nav-buttons .nav-links a {
+      background: #444;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      box-shadow: inset 0 1px 6px rgba(255, 255, 255, 0.2);
+    }
+    
+    .nav-buttons .nav-links a:hover {
+      background: #D175A7;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    
+    .back-to-top-wrapper {
+      text-align: center;
+    }
+    
+    .back-to-top {
+      display: inline-block;
+      background: #444;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 114, 255, 0.25);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    
+    .back-to-top:hover {
+      background: #D175A7;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .nav-buttons {
+        max-width: 900px;
+        width: 100%;
+        box-sizing: border-box; /* CRITICAL: ensures padding is included within width */
+        overflow-x: hidden; /* Optional: guards against content spill */
+      }
+      
+      .nav-buttons .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .nav-buttons .nav-links a {
+        width: 100% !important;
+      }
+      
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    }
+    
+    /* === zapID row === */
+    .zapid-display-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      word-break: break-word;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    /* === Copy button === */
+    .copy-button {
+      font-size: 0.8rem;
+      background-color: #e2e2e2;
+      border: none;
+      border-radius: 6px;
+      padding: 4px 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    
+    .copy-button:hover {
+      background-color: #ccc;
+    }
+    
+    /* === zapID label and input === */
+    #zlabel {
+      margin-top: 10px;
+      text-align: center;
+      display: block;
+    }
+    
+    #zapid-input {
+      display: block;
+      margin: 1rem auto;
+      padding: 12px 16px;
+      font-size: 1.05rem;
+      border: 2px solid #888;
+      border-radius: 8px;
+      max-width: 85%;
+      width: 360px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    
+    /* === zapID output === */
+    #user-zapid {
+      font-family: monospace;
+      font-size: 1rem;
+      text-align: center;
+      word-break: break-word;
+      white-space: normal;
+      padding: 0.5rem;
+      margin: 0 auto;
+      display: block;
+      max-width: 100%;
+      color: #111;
+      background: #ffffff88;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="voltage-wrapper">
+        <div class="nav-title-wrapper">
+          <div class="nav-title">ZapCaptcha</div>
+          <svg class="zap-svg"><!-- OMITTED --></svg>
+          <div class="dots">
+            <div class="dot dot-1"></div><div class="dot dot-2"></div>
+            <div class="dot dot-3"></div><div class="dot dot-4"></div><div class="dot dot-5"></div>
+          </div>
+        </div>
+        <div id="company">By <a href="https://www.qvlx.com" style="color: black; text-decoration: underline;">QVLx Labs</a></div>
+      </div>
+      <nav>
+        <a href="../index.html">🛖</a>
+        <a href="../features.html">Features</a>
+        <a href="/docs/">Documentation</a>
+        <a href="https://www.qvlx.com/contact-us">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h1>🥥 Notes on ZapCaptcha Server</h1>
+      <p class="subhead">A zero-trust private server for next-level gating.</p>
+      <div class="cta-wrapper">
+        <a href="https://www.qvlx.com/contact-us" class="cta-button">Get Additional Help</a>
+      </div>
+    </section>
+    
+    <div class="nav-buttons">
+      <div class="nav-label">Quick Navigation</div>
+      <div class="nav-links">
+        <a href="#intro">Intro</a>
+        <a href="#s1">Add Public Key</a>
+        <a href="#s2">Receiving Telemetry</a>
+        <a href="#s3">Verifying Signatures</a>
+        <a href="#s4">Signing/Sending Responses</a>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <h2 id="intro">🔐 Introducing ZapCaptcha Server Mode</h2>
+      <p>
+        ZapCaptcha Server Mode extends the power of client-side CAPTCHA verification with
+        <strong>zero-trust, cryptographically anchored server validation</strong>.
+      </p>
+      <p>
+        By default, ZapCaptcha runs entirely in the browser — secure, self-contained, and bot-resistant.
+        But for organizations that need <strong>backend enforcement</strong>, <strong>central telemetry</strong>, or
+        <strong>fine-grained lockout control</strong>, Server Mode enables a cryptographically verifiable handshake between
+        the client and your server.
+      </p>
+    
+      <h3>ℹ️ How It Works</h3>
+      <p>
+        To activate server verification, simply embed your server’s <strong>2048-bit RSA public key</strong> in a
+        <code>&lt;meta&gt;</code> tag on your page.
+      </p><br>
+      <p>
+        This public key anchors trust: it allows ZapCaptcha to verify server-issued commands, sign telemetry, and prevent spoofed responses. The key must:
+      </p>
+      <ul>
+        <li>Be a <strong>2048-bit RSA</strong> key</li>
+        <li>Be in <strong>PEM format</strong></li>
+        <li><strong>Include unescaped headers</strong> (i.e., keep <code>-----BEGIN PUBLIC KEY-----</code> intact)</li>
+      </ul>
+    
+      <h3>✅ Server Mode Benefits</h3>
+      <ul>
+        <li><strong>Signature Verification</strong> — All server-issued responses (e.g. lock/unlock) are signed and validated on the client.</li>
+        <li><strong>Bot Lockout Enforcement</strong> — Clients flagged as high-risk can be hard-disabled across sessions.</li>
+        <li><strong>Secure Telemetry</strong> — Clients send signed verification events like <code>zapVerify</code> and <code>zapLockout</code>.</li>
+        <li><strong>Replay Defense</strong> — Nonce and timestamp validation prevent reuse of stale messages.</li>
+        <li><strong>Command and Control</strong> — The server can issue live behavioral commands to alter CAPTCHA behavior.</li>
+      </ul>
+    
+      <h3>🛡️ Use Cases</h3>
+      <ul>
+        <li>Enforce CAPTCHA status across multiple devices or sessions</li>
+        <li>Block known VPNs, Tor users, or headless clients server-side</li>
+        <li>Log all successful and failed verification attempts</li>
+        <li>Gate backend forms or tokens behind verified client telemetry</li>
+      </ul>
+    </div>
+
+
+    <div class="content-block">
+  <h2 id="s1">Add Your Public Key to the Page</h2>
+    <p>To enable server verification, declare your server's public key in a <code>&lt;meta&gt;</code> tag. The string must contain NO NEWLINES.</p>
+    
+    <div class="code-block">
+      <pre><code><span class="highlight">HTML</span><br>
+  &lt;meta name="zap-server-pubkey" content="-----BEGIN PUBLIC KEY-----
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnw+VURpbUDInPo2lZZZ0
+  cLZFaJ4XGibcnEfMwQmOy7q2T2TtZM27adK7/aBY1/SMa90V13dk6mu+oPXTZzWW
+  aXtnwnH4FkyUMBCqIEvfzTspUGco/+nmJ9fT8k40ATUGaLfqI/Ues+Sp/WMzPgLC
+  id5Pdo0HRb1Cv20/8kFZrfSUopCDkhpUHrFtkbTdWnGbkbHiobEOSlp+SoEt+6FK
+  HDcRBLo6pwO6Ny7sd46y0Z9Q20FecdIWo5DsH9dX4MVJqkeBHoqvX3702EhbycDi
+  8qeOPWfHaUjbx6CZm7XHBcT/BRqIghyNvXGcCqbLZpCi71GsWeGQa/M4amM2lvzd
+  uwIDAQAB
+  -----END PUBLIC KEY-----"&gt;
+  </code></pre>
+    </div>
+    <br>
+  
+    <h2 id="s2">Understand the Telemetry Payloads</h2>
+    <p>After a CAPTCHA is solved (or tampering is detected), ZapCaptcha sends signed telemetry via <code>navigator.sendBeacon</code> or <code>fetch</code> to your server. By default, the payload is POST'ed to:</p>
+    <div class="code-block"><pre><code>/zapcapture</code></pre></div>
+    <p>Each payload includes the following structure:</p>
+  
+    <div class="code-block">
+      <pre><code><span class="highlight">POST JSON</span><br>
+  {
+    "event": "zapVerify", // or "zapLockout", "zapID"
+    "data": { ... },       // nonces, configHash, fingerprint info
+    "timestamp": 1723525823,
+    "signature": "base64-encoded RSA signature",
+    "jwk": { ... }         // ephemeral public key used to verify signature
+  }
+  </code></pre>
+    </div>
+  
+    <p>All telemetry events are signed using a client-side ephemeral RSA key, which is included as a JWK (JSON Web Key).</p>
+    <br>
+  
+    <h2 id="s3">Verify the Payload Server-Side</h2>
+    <p>On your server, verify that:</p>
+    <ul>
+      <li><b>✔ Signature is valid</b> for the data + timestamp</li>
+      <li><b>✔ Timestamp</b> is within ±60 seconds</li>
+      <li><b>✔ Nonce</b> is unique and not replayed</li>
+      <li><b>✔ configHash</b> matches expected values (optional)</li>
+    </ul>
+  
+    <p>Example (Python Flask) signature verification:</p>
+    <div class="code-block">
+      <pre><code><span class="highlight">Python</span><br>
+  from cryptography.hazmat.primitives import hashes, serialization
+  from cryptography.hazmat.primitives.asymmetric import padding
+  import base64, json
+  
+  def verify_signature(jwk, payload, signature):
+      from cryptography.hazmat.primitives.asymmetric import rsa
+      public_numbers = rsa.RSAPublicNumbers(
+          e=int(jwk["e"], 16),
+          n=int(jwk["n"], 16)
+      )
+      pubkey = public_numbers.public_key()
+      signature_bytes = base64.b64decode(signature)
+      message = json.dumps(payload["data"], sort_keys=True).encode()
+  
+      pubkey.verify(
+          signature_bytes,
+          message,
+          padding.PKCS1v15(),
+          hashes.SHA256()
+      )
+  </code></pre>
+    </div>
+    <p>Replay protection should use a database of recent nonces + timestamps to prevent reuse.</p>
+    <br>
+  
+    <h2 id="s4">Respond with Signed Commands (Optional)</h2>
+    <p>You may respond to telemetry with a signed instruction such as <code>zapLockout</code>, <code>zapUnlock</code>, or <code>display</code>. These are verified by the client using the <code>&lt;meta name="zap-server-pubkey"&gt;</code> key.</p>
+    <p>Example server response:</p>
+  
+    <div class="code-block">
+      <pre><code><span class="highlight">JSON</span><br>
+  {
+    "command": "zapLockout",
+    "reason": "DevTools detected",
+    "timestamp": 1723525829,
+    "signature": "base64...",
+    "jwk": null
+  }
+  </code></pre>
+    </div>
+  
+    <p>The client will immediately act on this command if the signature is valid.</p>
+    <br>
+  
+    <h2>💡 Additional Notes</h2>
+    <ul>
+      <li>🔐 Clients cannot self-verify; every action must be cryptographically bound to a server-side decision.</li>
+      <li>🕵️ Even if a client is tampered with, the server's signature check ensures only authentic data is trusted.</li>
+      <li>📜 You may store all telemetry in a MySQL or SQLite table for auditing or scoring purposes.</li>
+      <li>⚠️ Clients that fail integrity checks (JS/CSS mismatch, devtools) will trigger <code>zapLockout</code> events by default.</li>
+    </ul>
+  </div>
+  </main>
+  
+  <div class="back-to-top-wrapper">
+    <a href="#hero" class="back-to-top">⬆ Back to Top</a>
+  </div>
+
+  <footer>
+    <div class="exclaim-tab">
+      <p id="exclaim">This site never saves or sells your data</p>
+    </div>
+    <div class="footer-content">
+      © 2025 QVLx Labs. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".code-block").forEach(block => {
+        const button = document.createElement("button");
+        button.className = "copy-button";
+        button.setAttribute("aria-label", "Copy code to clipboard");
+        button.textContent = "📋";
+  
+        const tooltip = document.createElement("div");
+        tooltip.className = "copy-tooltip";
+        tooltip.textContent = "Copied!";
+        tooltip.style.display = "none";
+  
+        // Append both elements first
+        block.appendChild(button);
+        block.appendChild(tooltip);
+  
+        button.addEventListener("click", () => {
+          const code = block.querySelector("code");
+          const clone = code.cloneNode(true);
+          clone.querySelectorAll("span.highlight").forEach(el => {
+            el.replaceWith(el.textContent);
+          });
+          const text = clone.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            button.textContent = "✅";
+            tooltip.style.display = "block";
+            setTimeout(() => {
+              tooltip.style.display = "none";
+              button.textContent = "📋";
+            }, 1200);
+          }).catch(() => {
+            button.textContent = "❌";
+            setTimeout(() => button.textContent = "📋", 1200);
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
