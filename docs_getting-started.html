@@ -130,7 +130,7 @@
     
     .info {
       background: #e5e4e2;
-      border-radius: 3px;
+      border-radius: 8px;
       border: 1px solid black;
       padding: 0px 10px 10px 30px;
     }
@@ -140,11 +140,12 @@
     }
     
     .nav-buttons {
-      width: 100%
+      max-width: 860px;
       margin: 30px auto 40px auto;
       padding: 10px 20px;
       text-align: center;
-      background: #D18C75;
+      background: #66ACB3;
+      border-radius: 8px;
     }
     
     .nav-buttons .nav-label {
@@ -201,15 +202,107 @@
 
     @media (max-width: 600px) {
       .nav-buttons .nav-links {
+        max-width: 100%;
         flex-direction: column;
         align-items: center;
       }
     
       .nav-buttons .nav-links a {
-        width: 100%;
-        max-width: 300px;
+        width: 70% !important;
+      }
+      
+      .flags {
+        flex-direction: column;
+        align-items: center;
       }
     }
+    
+    /* === zapID row === */
+    .zapid-display-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      word-break: break-word;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    /* === Copy button === */
+    .copy-button {
+      font-size: 0.8rem;
+      background-color: #e2e2e2;
+      border: none;
+      border-radius: 6px;
+      padding: 4px 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    
+    .copy-button:hover {
+      background-color: #ccc;
+    }
+    
+    /* === zapID label and input === */
+    #zlabel {
+      margin-top: 10px;
+      text-align: center;
+      display: block;
+    }
+    
+    #zapid-input {
+      display: block;
+      margin: 1rem auto;
+      padding: 12px 16px;
+      font-size: 1.05rem;
+      border: 2px solid #888;
+      border-radius: 8px;
+      max-width: 85%;
+      width: 360px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    
+    /* === zapID output === */
+    #user-zapid {
+      font-family: monospace;
+      font-size: 1rem;
+      text-align: center;
+      word-break: break-word;
+      white-space: normal;
+      padding: 0.5rem;
+      margin: 0 auto;
+      display: block;
+      max-width: 100%;
+      color: #111;
+      background: #ffffff88;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+    
+    .hashes {
+      max-width: 880px;
+      background: #7DD1BF;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 1px;
+      padding-bottom: 3px;
+      border-radius: 8px;
+    }
+  
+  .flags {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+caption {
+  color: blue;
+  font-weight: bold; 
+}
 
   </style>
 </head>
@@ -230,6 +323,7 @@
       <nav>
         <a href="../index.html">🛖</a>
         <a href="../features.html">Features</a>
+        <a href="/docs/server.html">Server</a>
         <a href="/docs/">Documentation</a>
         <a href="https://www.qvlx.com/contact-us">Support</a>
       </nav>
@@ -238,58 +332,78 @@
 
   <main>
     <section id="hero">
-      <h1>🚀 Getting Started with ZapCaptcha</h1>
-      <p class="subhead">Follow 4 steps to integrate ZapCaptcha into your site.</p>
+      <h1>⛵️ Getting Started with ZapCaptcha</h1>
+      <p class="subhead">☀️ 4 steps integrate the stack neatly into your site</p>
       <div class="cta-wrapper">
-        <a href="https://www.qvlx.com/contact-us" class="cta-button">Get Additional Help</a>
+        <a href="https://www.qvlx.com/contact-us" class="cta-button">Additional Help</a>
       </div>
     </section>
+    
+    <p>🐚 This CAPTCHA system can run entirely in the browser! Server is optional.</p>
     
     <div class="nav-buttons">
       <div class="nav-label">Quick Navigation</div>
       <div class="nav-links">
         <a href="#1">Step 1: Get dependency</a>
-        <a href="#2a">Step 2: Add HTML</a>
+        <a href="#2">Step 2: Add HTML</a>
         <a href="#3a">Step 3: Add Javascript</a>
         <a href="#4">Step 4: Configure flags</a>
       </div>
     </div>
 
     <div class="content-block">
-      <h2 id="1">1. Include the ZapCaptcha JS</h2>
-      <p>Place this near the end of your document <b><code>&lt;body&gt;</code></b> to access the library:</p>
-      <div class="code-block">
-        <pre><code><span class="highlight">HTML</span><br>&lt;script src="https://www.zapcaptcha.com/zapcaptcha.js"&gt;&lt;/script&gt;</code></pre>
+      <div class="hashes">
+        <h4>ZapCaptcha.js SHA-384</h4>
+        <div class="code-block">
+          <pre><code>c8719cbb5db9492b47049d3a71bb5e304a8284bab076214d883670a611ff1a2fd329a9e60a6a36b8b398d30419eed393</code></pre>
+        </div>
+        <h4>ZapCaptcha.css SHA-384</h4>
+        <div class="code-block">
+          <pre><code>2dd41edfd9df304169980eaeb422a9329dc131b31f66ed5add6555e7a3f6a147eacb7308d78e3764e48715a1b4fe35b4</code></pre>
+        </div>
       </div>
-      
-      <p>This optional line can go in your <b><code>&lt;head&gt;</code></b> section for best performance and determinism:</p>
+      <p>🛡️ You can hash verify your CAPTCHA system manually and also configure built-in root-of-trust verification <a href="#checkhash" id="minilink">here</a></p>
+      <p>🔐 To bulletproof your CAPTCHA system by using it with a server, read about it <a href="/docs/server.html" id="minilink">here</a></p>
+      <br><br>
+    
+      <h2 id="1">1. Include the ZapCaptcha JS</h2>
+      <p>This is the only required dependency. Place this near the end of your document <b><code>&lt;body&gt;</code></b> to access the library:</p>
       <div class="code-block">
-        <pre><code><span class="highlight">HTML (OPTIONAL)</span><br>&lt;noscript&gt;&lt;link rel="stylesheet" href="https://zapcaptcha.com/zapcaptcha.css"&gt;&lt;/noscript&gt;</code></pre>
+        <pre><code><span class="highlight">HTML (REQUIRED)</span><br>&lt;script type="module" src="https://zapcaptcha.com/zapcaptcha.js">&lt;/script&gt;</code></pre>
+      </div><br><br>
+      
+      <p>‼️Deactivating javascript can bypass some gates. Put this guard in the <b><code>&lt;head&gt;</code></b> of your html file:</p>
+      <div class="code-block">
+        <pre><code><span class="highlight">HTML (RECOMMENDED)</span><br>&lt;noscript&gt;&lt;meta http-equiv="refresh" content="0; url=/no-js.html"&gt;&lt;/noscript&gt;</code></pre>
+      </div>
+      <p>This optional line can go in your <b><code>&lt;head&gt;</code></b> section for best security, performance, and determinism:</p>
+      <div class="code-block">
+        <pre><code><span class="highlight">HTML (RECOMMENDED)</span><br>&lt;noscript&gt;&lt;link rel="stylesheet" href="https://zapcaptcha.com/zapcaptcha.css"&gt;&lt;/noscript&gt;</code></pre>
       </div>
       <small>⚠️You can squeeze out a negligible increase in performance by preloading the styles, but that violates CSR unless allowing unsafe in-line. Hence, we don't recommend doing this:<br>
       <code>&lt;link rel="preload" href="https://zapcaptcha.com/zapcaptcha.css" as="style" onload="this.rel='stylesheet'"&gt;</code>
       </small>
       <br><br>
-        <p>Turning off user-scalable can help in certain mobile layouts; put this line in your <b><code>&lt;head&gt;</code></b> section:</p>
+        <p>It's rare but if you're having issues with a highly specialized mobile layout, put this line in your <b><code>&lt;head&gt;</code></b> section:</p>
       <div class="code-block">
         <pre><code><span class="highlight">HTML (OPTIONAL)</span><br>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</code></pre>
-      </div>
-      <br>
-      
-      <div class="info">
-      <h2>💡 From here, you have three paths you can take:</h2>
+      </div><br><br>
+      <div class="info" id="2">
+      <h2>💡 From here, you have these paths you can take:</h2>
       <p>2a. <a href="#2a" id="minilink">Inline Action</a> - Situation with a custom button to be CAPTCHA gated from performing a custom action.</p>
       <p>2b. <a href="#2b" id="minilink">Form Submit</a> - Situation with a form submit button to be CAPTCHA gated from performing submit.</p>
-      <p>2c. <a href="#2c" id="minilink">Multi-CAPTCHA</a> - Situation with multiple elements, whether inline or submit, that you want CAPTCHA gated.</p>
+      <p>2c. <a href="#2c" id="minilink">Multi-CAPTCHA</a> - Situation with multiple elements, of inline or submit, that you want CAPTCHA gated.</p>
+      <p>2d. <a href="#2d" id="minilink">Frictionless</a> - Situation with one or more frictionless CAPTCHA gates.</p>
       </div>
       <br><br>
+      <small>⚠️It is best practice to disable all buttons with the <b><code>disabled</code></b> keyword and letting ZapCaptcha enable the button automatically<br>
       
       <h2 id="2a">2a. HTML for Inline CAPTCHA</h2>
       <p>In the case where you have a button that performs an inline action, use this verification example to gate any trigger you want:</p>
       <div class="code-block">
         <pre><code><span class="highlight">HTML</span><br>
 &lt;div class="zcaptcha-box" data-zcap-timeout="5" data-target-id="example1_button"&gt;&lt;/div&gt;<br>
-&lt;button class="zapcaptcha-button" id="example1_button"&gt;Verify Me&lt;/button&gt;<br>
+&lt;button class="zapcaptcha-button" id="example1_button" disabled&gt;Verify Me&lt;/button&gt;<br>
 &lt;div class="inline-result"&gt;&lt;/div&gt;</code></pre>
       </div>
       <p>Then proceed to the corresponding Javascript section <a href="#3a">3a</a></p>
@@ -302,7 +416,7 @@
 &lt;form id="demoForm" action="success.html" method="POST"&gt;<br>
   &nbsp;&lt;div class="zcaptcha-box" data-zcap-timeout="5" data-target-id="example2_button"&gt;&lt;/div&gt;<br>
   &nbsp;&lt;input type="text" placeholder="Enter text here" required /&gt;<br>
-  &nbsp;&lt;button type="submit" class="zapcaptcha-button" id="example2_button"&gt;Submit&lt;/button&gt;<br>
+  &nbsp;&lt;button type="submit" class="zapcaptcha-button" id="example2_button" disabled&gt;Submit&lt;/button&gt;<br>
 &lt;/form&gt;</code></pre>
       </div>
       <p>Then proceed to the corresponding Javascript section <a href="#3b">3b</a></p>
@@ -322,9 +436,18 @@
       <p>Then proceed to the corresponding Javascript section <a href="#3c">3c</a></p>
       <br>
       
+      <h2 id="2d">2d. Frictionless</h2>
+      <p>To make one or more of your ZapCaptcha gates frictionless, first enable the <b><code>frictionLess</code></b> metatag option as explained in the configuration section <a href="#frictionless" id="minilink">here</a></p>
+      <div class="code-block">
+        <pre><code><span class="highlight">HTML</span>
+&lt;form id="example" method="post"&gt;<br>
+&lt;div class="zcaptcha-box" data-zcap-frictionless="1" data-target-id="example"&gt;&lt;/div&gt;<br><br></code></pre>
+      </div>
+      <br><br>
+      
       <div class="info">
       <h2>💡 Customization options available for your CAPTCHA</h2>
-      <p>ℹ️CAPTCHA timeout can be set using the <b><code>data-zcap-timeout</code></b> attribute. If not set, uses default of 1 minute.</p>
+      <p>ℹ️CAPTCHA timeout can be set using the <b><code>data-zcap-timeout</code></b> attribute. If not set, uses default of 20 seconds.</p>
       <small>&nbsp;&nbsp;Example: <code>&lt;div class="zcaptcha-box" data-target-id="example" <b>data-zcap-timeout="120"</b>&gt;&lt;/div&gt;</code></small><br>
       <p>ℹ️Compact mode is set using the <b><code>data-size</code></b> attribute. Great when spatially restricted. If not set, defaults.</p>
       <small>&nbsp;&nbsp;Example: <code>&lt;div class="zcaptcha-box" data-target-id="example" <b>data-size="compact"</b>&gt;&lt;/div&gt;</code></small><br>
@@ -398,9 +521,9 @@ window.addEventListener("DOMContentLoaded", () =&gt; {<br>
       <p>Use metatag passed options in the HTML to customize your CAPTCHA.</p><br>
 
       <h3>Overview</h3>
-      <p>Users can override default parameters using the <b><code>zap-flags</code></b> metatag and passing flags in HTML.</p><br>
+      <p>Users can override default parameters using the <b><code>zap-flags</code></b> metatag and passing flags in HTML. Multiple flags can be set in a single metatag.</p><br>
 
-      <h3>viewportConfined</h3>
+      <h3>viewportConfined (Default: True)</h3>
       <p>By default, ZapCaptcha restricts the challenge hitbox spawn and exploration space to the viewport. This is to prevent frustration with having to find an offscreen hitbox.</p>
       <p>However, this option is not set in stone and can be toggled using <b><code>viewportConfined</code></b>. To turn this safegaurd off, use the following metatag syntax:</p>
       <div class="code-block">
@@ -409,24 +532,109 @@ window.addEventListener("DOMContentLoaded", () =&gt; {<br>
       <p>Turning off <b><code>viewportConfined</code></b> allows for a slightly more explorative and challenging CAPTCHA that sacrifices user experience to lower bot success rate. Of course, keep in mind unconfined viewport mode is meaningless if the document height is less than or equal to the viewport height.</p>
       <br>
       
-      <h3>canvasMode</h3>
+      <h3>canvasMode (Default: True)</h3>
       <p>By default, ZapCaptcha uses canvas drawing to provide its gamified CAPTCHA challenge. This provides an added layer of security and bot evasion. However, on some legacy systems, switching to DOM mode may be warranted. This can be done using the <b><code>canvasMode</code></b> flag. To activate legacy DOM CAPTCHA mode, use the following metatag syntax:</p>
       <div class="code-block">
         <pre><code>&lt;meta name="zap-flags" content="canvasMode = false"&gt;</code></pre>
       </div>
+      <br>
+      
+      <h3>debugMessages (Default: False)</h3>
+      <p>Debugging feature we left in. Enabling this option dumps potential console tamper signatures to the console. These checks contain high false positives and low accuracy, but together can be used by your team to possibly craft preventative measures.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="debugMessages = true"&gt;</code></pre>
+      </div>
+      <br>
+
+      <h3>lockoutsEnabled (Default: True)</h3>
+      <p>This flag determines whether or not the ZapCaptcha client locks out users who perform flagged operations. Turn this off if you want to simply observe bot or threat actor activity and not immediately penailize it.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="lockoutsEnables = false"&gt;</code></pre>
+      </div>
+      <br>
+      
+      <h3>softLock (Default: False)</h3>
+      <p>This flag further refines lockout to not be a hard ban (the default) but rather a deactivation of CAPTCHAs and hence their gated buttons. For when you want locked out users to still be able to read and navigate.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="softLock = true"&gt;</code></pre>
+      </div>
+      <br>
+      
+      <h3>sessionLock (Default: True)</h3>
+      <p>This flag means lockout state gets stored in session storage. Can be combined with the cookie and local storage lockout flags. A light ban persistence.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="sessionLock = false"&gt;</code></pre>
+      </div>
+      <br>
+      
+      <h3>cookieLock (Default: True)</h3>
+      <p>This flag means lockout state gets stored in cookie storage. Can be combined with the session and local storage lockout flags. A light ban persistence.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="cookieLock = false"&gt;</code></pre>
+      </div>
+      <br>
+      
+      <h3>localLock (Default: False)</h3>
+      <p>This flag means lockout state gets stored in local storage. Can be combined with the session and local storage lockout flags. A heavy ban persistence.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="localLock = true"&gt;</code></pre>
+      </div>
+      <br>
+      
+      <h3>serverMode (Default: False)</h3>
+      <p>This flag enables the high-assurance server mode. To read about how server mode works and how to leverage it, read here.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="serverMode = true"&gt;</code></pre>
+      </div>
+      <br>
+      
+      <h3>serverLock (Default: False)</h3>
+      <p>This flag enables the high-assurance server trust-anchored server to solely determine lockouts Requires <code>serverMode</code> and if <code>serverLock</code> is false but <code>serverMode</code> is true, the server lockout input gets OR'd with local determinations.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="serverMode = true"&gt;</code></pre>
+      </div>
+      <br>
+      
+      <h3>clickDelay (Default: False)</h3>
+      <p>By default CAPTCHA clicks immediately register with the system. The <code>clickDelay</code> feature allows for increased bot evasion by adding a randomized click delay. This countermeasure may mean more clicks are needed and sacrifice user experience.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="serverMode = true"&gt;</code></pre>
+      </div>
+      <br>
+      
+      <h3>spawnDelay (Default: False)</h3>
+      <p>By default the CAPTCHA box immediately spawns in the browser. The spawnDelay feature allows for increased bot evasion by adding a randomized spawn delay. This countermeasure may mean a slight wait is needed and sacrifice user experience.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="serverMode = true"&gt;</code></pre>
+      </div>
+      <br>
+      
+      <h3 id="frictionless">frictionLess (Default: False)</h3>
+      <p>To leverage the frictionless capability built-into ZapCaptcha, you must enable it first as it's disabled by default.</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="frictionLess = true"&gt;</code></pre>
+      </div>
+      <br>
 
       <br>
-      <h3 id="security">Security configuration</h3>
-      <p>By default, ZapCaptcha imposes <b>no security restrictions whatsoever</b>. It is up to the developer to set the mitigations that they would like in place.</p>
-      <p>Luckily, setting all of the security flags at once is easy. To turn all countermeasures on, use the <b><code>allsec</code></b> flag like so:
+      <h2 id="security">Security configuration</h2>
+      <p>By default, ZapCaptcha employs a minimum subset of security features that are not configurable. From there it is up to the developer to set the mitigations that they would like in place.</p>
+      <p>And setting all of the security flags at once is easy. To turn all countermeasures on, use the <b><code>allsec</code></b> flag like so:
       
       <div class="code-block">
         <pre><code>&lt;meta name="zap-flags" content="allsec = true"&gt;</code></pre>
       </div>
       
-      <br><small>ℹ️ Setting the <b><code>allsec</code></b> flag to does NOT turn off the <b><code>viewportConfined</code></b> capability.</small><br><br>
+      <br><small>ℹ️ Setting the <b><code>allsec</code></b> flag to does NOT turn off the <b><code>viewportConfined</code></b> capability or other non-security items listed above.</small><br><br>
       
-      <p>However in most cases, turning on all security flags is too restrictive and can lead to unintended resultant user experience consequences. A recommended approach is to explicitly enable the desired protections.</p>
+      <h3>Overriding <b><code>allsec</code></b> flag</h3>
+      <p>The All Security Features On flag can be overridden by simply adding the specific flag to override in succession like so:</p>
+      <div class="code-block">
+        <pre><code>&lt;meta name="zap-flags" content="allsec = true, lockoutsEnabled = false, vpnCheck = false&gt;</code></pre>
+      </div>
+      <br>
+      
+      <p>In some cases when turning on all security flags is too restrictive and results in unintended resultant user experience consequences, another approach is to explicitly enable only the desired protections.</p>
       <p>For example, to restrict user clicking to only interactive elements (buttons, forms, links, etc) while also enabling canvas spoofing protection, use the following metatag and flags:</p>
       <div class="code-block">
         <pre><code>&lt;meta name="zap-flags" content="clickBlockEnforcement = true, canvasSpoofingCheck = true"&gt;</code></pre>
@@ -435,8 +643,6 @@ window.addEventListener("DOMContentLoaded", () =&gt; {<br>
       
       <br><small>ℹ️ Setting the <b><code>clickBlockEnforcement</code></b> flag enforces policy but does not detect and lockout.</small><br><br>
       
-      <br><small>ℹ️ Setting the <b><code>devToolsDetection</code></b> flag prints warnings to the console, it does not result in a lockout.</small><br><br>
-      
       <br><small>ℹ️ All other security flags result in user lockout when the threat criteria is met.</small><br><br>
 
       <p>The full list of security options are listed below.</p>
@@ -444,33 +650,85 @@ window.addEventListener("DOMContentLoaded", () =&gt; {<br>
       <br>
       <div class="info">
       <h2>💡 Security options available for your CAPTCHA</h2>
-      <p>🔐<b>consoleTamperDetection</b> - Detects if the browser console is opened or manipulated.</p>
-      <p>🔐<b>debuggerTimerDetection</b> - Checks for active DevTools via size probing and inspection side effects.</p>
-      <p>🔐<b>devToolsDetection</b> - Validates JavaScript integrity by comparing against a known checksum.</p>
       <p>🔐<b>checksumJS</b> - Validates JavaScript integrity by comparing against a known checksum.</p>
       <p>🔐<b>checksumCSS</b> - Validates CSS stylesheet integrity using precomputed hash values.</p>
-      <p>🔐<b>clickBlockEnforcement</b> - Enforces overlay protection to block user interaction during CAPTCHA.</p>
+      <p>🔐<b>clickBlockEnforcement</b> - Blocks user right-click interaction on CAPTCHA'ed webpage.</p>
+      <p>🔐<b>selectBlockEnforcement</b> - Blocks user copying and selection interaction on CAPTCHA'ed webpage.</p>
       <p>🔐<b>functionTamperCheck</b> - Detects tampering with core functions like addEventListener or setTimeout.</p>
       <p>🔐<b>canvasSpoofingCheck</b> - Detects canvas fingerprinting spoofing by validating rendered pixel data.</p>
       <p>🔐<b>headlessBrowserCheck</b> - Identifies headless environments like Puppeteer or Selenium.</p>
       <p>🔐<b>cssOverrideDetection</b> - Detects unauthorized style overrides or external CSS injection.</p>
+      <p>🔐<b>iframeEmbedCheck</b> - Detects if inside iframe execution flow and if so escapes or locks.</p>
+      <p>🔐<b>iframeInjectCheck</b> - Detects any iframes injected into the DOM and neutralizes them.</p>
+      <p>🔐<b>torCheck</b> - Detects Tor browser using fingerprinting and then locks out.</p>
+      <p>🔐<b>vpnCheck</b> - Checks for common VPN technology IP addresses and if found locks out.</p>
+      <p>🔐<b>lockShadow</b> - Mitigates against shadow DOM attacks.</p>
+      <p>🔐<b>monkeyPatching</b> - Patches createElement and createElementNS.</p>
+      <p>🔐<b>devtoolsCheck</b> - Refreshes the page repeatedly when devtools are open.</p>
       </div>
+      <br><br>
+      <h2>Configuration Quick Reference</h2>
+      <div class="flags">
+      <table>
+        <caption>Default flags</caption>
+        <tr><th>Flag</th><th>Default</th></tr>
+        <tr><td>viewportConfined</td><td class="true">true</td></tr>
+        <tr><td>canvasMode</td><td class="true">true</td></tr>
+        <tr><td>lockoutsEnabled</td><td class="true">true</td></tr>
+        <tr><td>sessionLock</td><td class="true">true</td></tr>
+        <tr><td>cookieLock</td><td class="true">true</td></tr>
+        <tr><td>extraChallenges</td><td class="true">true</td></tr>
+      </table>
+      <table>
+        <caption>Core flags</caption>
+        <tr><th>Flag</th><th>Default</th></tr>
+        <tr><td>debugMessages</td><td class="false">false</td></tr>
+        <tr><td>softLock</td><td class="false">false</td></tr>
+        <tr><td>localLock</td><td class="false">false</td></tr>
+        <tr><td>serverMode</td><td class="false">false</td></tr>
+        <tr><td>serverLock</td><td class="false">false</td></tr>
+        <tr><td>clickDelay</td><td class="false">false</td></tr>
+        <tr><td>spawnDelay</td><td class="false">false</td></tr>
+        <tr><td>frictionLess</td><td class="false">false</td></tr>
+      </table>
+      <table>
+        <caption>Security flags</caption>
+        <tr><th>Flag</th><th>Default</th></tr>
+        <tr><td>checksumJS</td><td class="false">false</td></tr>
+        <tr><td>checksumCSS</td><td class="false">false</td></tr>
+        <tr><td>clickBlockEnforcement</td><td class="false">false</td></tr>
+        <tr><td>functionTamperCheck</td><td class="false">false</td></tr>
+        <tr><td>canvasSpoofingCheck</td><td class="false">false</td></tr>
+        <tr><td>headlessBrowserCheck</td><td class="false">false</td></tr>
+        <tr><td>cssOverrideDetection</td><td class="false">false</td></tr>
+        <tr><td>iframeEmbedCheck</td><td class="false">false</td></tr>
+        <tr><td>iframeInjectCheck</td><td class="false">false</td></tr>
+        <tr><td>torCheck</td><td class="false">false</td></tr>
+        <tr><td>vpnCheck</td><td class="false">false</td></tr>
+        <tr><td>lockShadow</td><td class="false">false</td></tr>
+        <tr><td>devtoolsCheck</td><td class="false">false</td></tr>
+        <tr><td>monkeyPatching</td><td class="false">false</td></tr>
+      </table>
+      </div>
+      <br><br>
+      <h2 id="checkhash">Integrity Checking</h2>
       
       <p>When using the <b><code>checksumJS</code></b> and <b><code>checksumCSS</code></b> flags, no enforcement will be done unless hashes are provided via metatags:</p>
       
       <div class="code-block">
-        <pre><code>&lt;meta name="zap-js-integrity" content="sha384-e0b4b8c6b29182b1ab9f576202743ab069dba5e315619493641399196473847511886764bf00253c764192c928c7116e"&gt;</code></pre>
+        <pre><code>&lt;meta name="zap-js-integrity" content="sha384-JS_HASH_HERE"&gt;</code></pre>
       </div>
       
       <div class="code-block">
-        <pre><code>&lt;meta name="zap-css-integrity" content="sha384-e0b4b8c6b29182b1ab9f576202743ab069dba5e315619493641399196473847511886764bf00253c764192c928c7116e"&gt;</code></pre>
+        <pre><code>&lt;meta name="zap-css-integrity" content="sha384-CSS_HASH_HERE"&gt;</code></pre>
       </div>
       
-      <p>Once the metatags are provided, the ZapCaptcha inner workings will check the sha384 sum provided in the metatag against the golden copies. Any tampering to the source code will result in immediate feedback and lockout.<p>
-      
+      <p>These hashes, which need to be updated to reflect the latest hashes, establish a trust anchor. Once the metatags are provided and configuration flags are set, the ZapCaptcha inner workings will check the sha384 sum provided against an onload check. Any tampering to the source code will result in immediate feedback and, if enabled, lockout.</p>
+      <br>
       <h2>✅ You're Done</h2>
       <p>That's it! You now have a fully working zero server CAPTCHA system with bot resistance, replay defense, and much more.</p>
     </div>
+    
   </main>
   
   <div class="back-to-top-wrapper">
@@ -507,7 +765,7 @@ window.addEventListener("DOMContentLoaded", () =&gt; {<br>
           const code = block.querySelector("code");
           const clone = code.cloneNode(true);
           clone.querySelectorAll("span.highlight").forEach(el => {
-            el.replaceWith(el.textContent);
+            el.remove();
           });
           const text = clone.textContent;
           navigator.clipboard.writeText(text).then(() => {
