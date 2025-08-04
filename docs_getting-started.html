@@ -111,10 +111,10 @@
     }
 
     hero {
-      margin-bottom: 0 auto !important;
+      margin-bottom: 0 !important;
     }
     
-    #minilink {
+    .minilink {
       background: #D175A7;
       color: white;
       text-decoration: none;
@@ -124,7 +124,7 @@
       padding-right: 4px;
     }
     
-    #minilink:hover {
+    .minilink:hover {
       background: #66cbb0;
     }
     
@@ -362,8 +362,8 @@ caption {
           <pre><code>2dd41edfd9df304169980eaeb422a9329dc131b31f66ed5add6555e7a3f6a147eacb7308d78e3764e48715a1b4fe35b4</code></pre>
         </div>
       </div>
-      <p>🛡️ You can hash verify your CAPTCHA system manually and also configure built-in root-of-trust verification <a href="#checkhash" id="minilink">here</a></p>
-      <p>🔐 To bulletproof your CAPTCHA system by using it with a server, read about it <a href="/docs/server.html" id="minilink">here</a></p>
+      <p>🛡️ You can hash verify your CAPTCHA system manually and also configure built-in root-of-trust verification <a href="#checkhash" class="minilink">here</a></p>
+      <p>🔐 To bulletproof your CAPTCHA system by using it with a server, read about it <a href="/docs/server.html" class="minilink">here</a></p>
       <br><br>
     
       <h2 id="1">1. Include the ZapCaptcha JS</h2>
@@ -390,13 +390,13 @@ caption {
       </div><br><br>
       <div class="info" id="2">
       <h2>💡 From here, you have these paths you can take:</h2>
-      <p>2a. <a href="#2a" id="minilink">Inline Action</a> - Situation with a custom button to be CAPTCHA gated from performing a custom action.</p>
-      <p>2b. <a href="#2b" id="minilink">Form Submit</a> - Situation with a form submit button to be CAPTCHA gated from performing submit.</p>
-      <p>2c. <a href="#2c" id="minilink">Multi-CAPTCHA</a> - Situation with multiple elements, of inline or submit, that you want CAPTCHA gated.</p>
-      <p>2d. <a href="#2d" id="minilink">Frictionless</a> - Situation with one or more frictionless CAPTCHA gates.</p>
+      <p>2a. <a href="#2a" class="minilink">Inline Action</a> - Situation with a custom button to be CAPTCHA gated from performing a custom action.</p>
+      <p>2b. <a href="#2b" class="minilink">Form Submit</a> - Situation with a form submit button to be CAPTCHA gated from performing submit.</p>
+      <p>2c. <a href="#2c" class="minilink">Multi-CAPTCHA</a> - Situation with multiple elements, of inline or submit, that you want CAPTCHA gated.</p>
+      <p>2d. <a href="#2d" class="minilink">Frictionless</a> - Situation with one or more frictionless CAPTCHA gates.</p>
       </div>
       <br><br>
-      <small>⚠️It is best practice to disable all buttons with the <b><code>disabled</code></b> keyword and letting ZapCaptcha enable the button automatically<br>
+      <small>⚠️It is best practice to disable all buttons with the <b><code>disabled</code></b> keyword and letting ZapCaptcha enable the button automatically</small><br>
       
       <h2 id="2a">2a. HTML for Inline CAPTCHA</h2>
       <p>In the case where you have a button that performs an inline action, use this verification example to gate any trigger you want:</p>
@@ -437,7 +437,7 @@ caption {
       <br>
       
       <h2 id="2d">2d. Frictionless</h2>
-      <p>To make one or more of your ZapCaptcha gates frictionless, first enable the <b><code>frictionLess</code></b> metatag option as explained in the configuration section <a href="#frictionless" id="minilink">here</a></p>
+      <p>To make one or more of your ZapCaptcha gates frictionless, first enable the <b><code>frictionLess</code></b> metatag option as explained in the configuration section <a href="#frictionless" class="minilink">here</a></p>
       <div class="code-block">
         <pre><code><span class="highlight">HTML</span>
 &lt;form id="example" method="post"&gt;<br>
@@ -525,7 +525,7 @@ window.addEventListener("DOMContentLoaded", () =&gt; {<br>
 
       <h3>viewportConfined (Default: True)</h3>
       <p>By default, ZapCaptcha restricts the challenge hitbox spawn and exploration space to the viewport. This is to prevent frustration with having to find an offscreen hitbox.</p>
-      <p>However, this option is not set in stone and can be toggled using <b><code>viewportConfined</code></b>. To turn this safegaurd off, use the following metatag syntax:</p>
+      <p>However, this option is not set in stone and can be toggled using <b><code>viewportConfined</code></b>. To turn this safeguard off, use the following metatag syntax:</p>
       <div class="code-block">
         <pre><code>&lt;meta name="zap-flags" content="viewportConfined = false"&gt;</code></pre>
       </div>
@@ -549,7 +549,7 @@ window.addEventListener("DOMContentLoaded", () =&gt; {<br>
       <h3>lockoutsEnabled (Default: True)</h3>
       <p>This flag determines whether or not the ZapCaptcha client locks out users who perform flagged operations. Turn this off if you want to simply observe bot or threat actor activity and not immediately penailize it.</p>
       <div class="code-block">
-        <pre><code>&lt;meta name="zap-flags" content="lockoutsEnables = false"&gt;</code></pre>
+        <pre><code>&lt;meta name="zap-flags" content="lockoutsEnabled = false"&gt;</code></pre>
       </div>
       <br>
       
@@ -591,21 +591,21 @@ window.addEventListener("DOMContentLoaded", () =&gt; {<br>
       <h3>serverLock (Default: False)</h3>
       <p>This flag enables the high-assurance server trust-anchored server to solely determine lockouts Requires <code>serverMode</code> and if <code>serverLock</code> is false but <code>serverMode</code> is true, the server lockout input gets OR'd with local determinations.</p>
       <div class="code-block">
-        <pre><code>&lt;meta name="zap-flags" content="serverMode = true"&gt;</code></pre>
+        <pre><code>&lt;meta name="zap-flags" content="serverLock = true"&gt;</code></pre>
       </div>
       <br>
       
       <h3>clickDelay (Default: False)</h3>
       <p>By default CAPTCHA clicks immediately register with the system. The <code>clickDelay</code> feature allows for increased bot evasion by adding a randomized click delay. This countermeasure may mean more clicks are needed and sacrifice user experience.</p>
       <div class="code-block">
-        <pre><code>&lt;meta name="zap-flags" content="serverMode = true"&gt;</code></pre>
+        <pre><code>&lt;meta name="zap-flags" content="clickDelay = true"&gt;</code></pre>
       </div>
       <br>
       
       <h3>spawnDelay (Default: False)</h3>
       <p>By default the CAPTCHA box immediately spawns in the browser. The spawnDelay feature allows for increased bot evasion by adding a randomized spawn delay. This countermeasure may mean a slight wait is needed and sacrifice user experience.</p>
       <div class="code-block">
-        <pre><code>&lt;meta name="zap-flags" content="serverMode = true"&gt;</code></pre>
+        <pre><code>&lt;meta name="zap-flags" content="spawnDelay = true"&gt;</code></pre>
       </div>
       <br>
       
@@ -630,7 +630,7 @@ window.addEventListener("DOMContentLoaded", () =&gt; {<br>
       <h3>Overriding <b><code>allsec</code></b> flag</h3>
       <p>The All Security Features On flag can be overridden by simply adding the specific flag to override in succession like so:</p>
       <div class="code-block">
-        <pre><code>&lt;meta name="zap-flags" content="allsec = true, lockoutsEnabled = false, vpnCheck = false&gt;</code></pre>
+        <pre><code>&lt;meta name="zap-flags" content="allsec = true, lockoutsEnabled = false, vpnCheck = false"&gt;</code></pre>
       </div>
       <br>
       
